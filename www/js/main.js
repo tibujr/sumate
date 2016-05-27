@@ -113,8 +113,8 @@ $(document).ready(function () {
 			alerta();
 			try
 			{
-				//navigator.geolocation.getAccurateCurrentPosition(posisionOk, posisionFalla, { desiredAccuracy: 50, maxWait: 15000 });
-				navigator.geolocation.getCurrentPosition(posisionOk, posisionFalla, { desiredAccuracy: 50, maxWait: 15000 });
+				navigator.geolocation.getAccurateCurrentPosition(posisionOk, posisionFalla, { desiredAccuracy: 50, maxWait: 15000 });
+				//navigator.geolocation.getCurrentPosition(posisionOk, posisionFalla, { desiredAccuracy: 50, maxWait: 15000 });
 			}
 			catch(er)
 			{
@@ -126,7 +126,6 @@ $(document).ready(function () {
 
 	function posisionOk(position)
 	{
-		alert("Encuenta la posicion :"+position.coords.latitude+", "+position.coords.longitude)
 		var x = position.coords.latitude;
 		var y = position.coords.longitude;
 		marcarAsistencia(x,y);
@@ -243,7 +242,6 @@ $(document).ready(function () {
 	//function marcarAsistencia()
 	function marcarAsistencia(x, y)
 	{
-		alert("Entra a marcar asistencia");
 		try
 		{
 			var datos = new FormData();

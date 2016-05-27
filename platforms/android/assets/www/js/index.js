@@ -1,4 +1,5 @@
-navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess, geolocationError, options) {
+//navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess, geolocationError, options) {
+public function getAccurateCurrentPosition(geolocationSuccess, geolocationError, options){
     var lastCheckedPosition;
     var locationEventCount = 0;
 
