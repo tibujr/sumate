@@ -62,7 +62,7 @@ var app = {
            window.plugins.PushbotsPlugin.updateAlias(device.uuid);
         });
 
-        navigator.geolocation.getAccurateCurrentPosition(app.onSuccess, app.onError, { desiredAccuracy: 50, maxWait: 60000 });
+        navigator.geolocation.getAccurateCurrentPosition(app.onSuccess, app.onError, { desiredAccuracy: 20, maxWait: 60000 });
 
     },
 
