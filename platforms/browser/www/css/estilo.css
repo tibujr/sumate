@@ -1,0 +1,205 @@
+
+body{
+  margin: 0;
+  padding: 0;
+}
+
+/*****    LOGIN   ****/
+#inicio, .pagina
+{
+  background: rgba(94, 143, 50, 0.46);
+  background-size: 100% 100%;
+  text-align: center;
+}
+
+#btn_login{
+  border: 1px solid #d3183e;
+  background: #ff1848;
+  text-shadow: none;
+  font: 13px ProximaNovaLight, sans-serif;
+  border-radius: 3px;
+  margin: 0;
+}
+
+.login_caja
+{
+  width: 230px;
+  height: 24px;
+  background: white;
+  padding: 2px 3% 6px 3%;
+  margin: 0 8% 10px 8%;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.login_caja div
+{
+  border:none;
+}
+
+.login_caja input
+{
+  font: 13px ProximaNova, sans-serif;
+  width: 100%;
+  /*margin-top: 3px;*/
+  margin: 0;
+  border: none;
+  background: white;
+  box-shadow: none !important;
+}
+
+.login_caja div:hover{
+  border:none;
+}
+
+/*******    FIN LOGIN   *******/
+
+/****   INDEX  *****/
+
+/*------  CABECER  -----*/
+
+.header-design div {
+    display: inline-block;
+    padding: 5px;
+    vertical-align: middle;
+}
+
+.header-design div img{
+    max-height: 35px;
+}
+
+.header-design div p{
+    text-shadow: none;
+    font-weight: bold;
+    color: #2F5959;
+    margin: 10px 0;
+    padding: 0;
+    font: 15px ProximaNovaLight, sans-serif;
+}
+
+
+/*------  FIN CABECER  -----*/
+
+#principal{
+  background: rgba(94, 143, 50, 0.2);
+}
+
+#principal .header-design{
+  background: #FFFFFF;/*#2F5959;*/
+}
+
+.cont-datos{
+  text-align: center;
+  width: 100% !important;
+}
+
+.cont-datos label{
+    display: inline-block;
+    width: 20%;
+    text-align: right;
+    margin-right: 2%;
+    text-shadow: none;
+    font: 15px ProximaNovaLight, sans-serif;
+    color: rgba(61, 92, 33, 0.98);
+}
+
+.cont-datos input.inp-all{
+    display: inline-block;
+    width: 80%;
+    margin: 10px 0 !important;
+    border: 1px solid #5B5B5B;
+    background: white;
+    color: black;
+    font-size: 15px;
+    border-radius: 5px;
+    box-shadow: none;
+    text-shadow: none;
+    font: 15px ProximaNovaLight, sans-serif;
+    letter-spacing: 0.2px;
+    font-weight: lighter;
+}
+
+#marcar-asistencia{
+    font: 13px ProximaNovaLight, sans-serif;
+    background: #283653;
+    color: white;
+    text-shadow: none;
+    width: 70%;
+    font-weight: lighter;
+    margin: 10px auto;
+    border: none;
+}
+
+#photo{
+    display: inline-block;
+    cursor: pointer;
+    margin-right: 2%;
+    vertical-align: middle;
+}
+
+#photo img{
+    max-width: 40px;
+}
+
+.btn-photo{
+    display: inline-block;
+    background: #ADADAD;
+    border-radius: 25px;
+    padding: 5px;
+}
+
+#mostrar-img{
+    display: inline-block;
+    height: 75px;
+    vertical-align: middle;
+}
+
+#mostrar-img img{
+    max-width: 100%;
+    height: 100%;
+}
+
+.tipo-marca{
+    display: inline-block;
+    width: 90%;
+    text-align: left;
+
+}
+
+.tipo-marca .ui-radio {
+    display: inline-block;
+    margin-right: 10px;
+    /*max-width: 48%;*/
+}
+
+.tipo-marca .ui-radio label {
+    width: 100%;
+    border-radius: 10px;
+    background: #2F5959;
+    color: white;
+    border: none;
+}
+
+.tipo-marca .ui-radio .ui-btn-text{
+  font-size: 12px;
+}
+
+/****** FIN INDEX ******/
+
+/***    LOADING  ****/
+
+.loading{
+  display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 15;
+}
+
+.loading img{
+
+}
+
+/***    FIN LOADING  ****/
