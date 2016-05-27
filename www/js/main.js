@@ -113,7 +113,8 @@ $(document).ready(function () {
 			alerta();
 			try
 			{
-				navigator.geolocation.getAccurateCurrentPosition(posisionOk, posisionFalla, { desiredAccuracy: 50, maxWait: 15000 });
+				//navigator.geolocation.getAccurateCurrentPosition(posisionOk, posisionFalla, { desiredAccuracy: 50, maxWait: 15000 });
+				navigator.geolocation.getCurrentPosition(posisionOk, posisionFalla, { desiredAccuracy: 50, maxWait: 15000 });
 			}
 			catch(er)
 			{
