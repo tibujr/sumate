@@ -111,6 +111,7 @@ $(document).ready(function () {
 			alert("Es necesario tomar la foto para marcar la asistencia.");
 		}else{
 			alerta();
+			alerta("Aqui empieza la geolocalización")
 			navigator.geolocation.getAccurateCurrentPosition(posisionOk, posisionFalla, { desiredAccuracy: 50, maxWait: 15000 });
 		}
 	});
@@ -163,6 +164,7 @@ $(document).ready(function () {
         	alertaOf();
         	rutaImagenG = base64Img;
         	nombreImagen = obtenerNombreFoto(foto);
+        	alert("foto:"+nombreImagen)
    	 	});
         
 	}
