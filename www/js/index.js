@@ -62,17 +62,17 @@ var app = {
            window.plugins.PushbotsPlugin.updateAlias(device.uuid);
         });
 
-        navigator.geolocation.getAccurateCurrentPosition(app.onSuccess, app.onError, { desiredAccuracy: 50, maxWait: 60000 });
+        //navigator.geolocation.getAccurateCurrentPosition(app.onSuccess, app.onError, { desiredAccuracy: 50, maxWait: 60000 });
 
     },
 
-    onSuccess: function(position) {},
+    //onSuccess: function(position) {},
 
     onSuccessA: function(position) {
         enviarUbicacion(position.coords.latitude, position.coords.longitude)//x,y
-    },
+    }
 
-    onError: function(error) {}
+    //onError: function(error) {}
 
     /*receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
