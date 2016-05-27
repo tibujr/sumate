@@ -1,7 +1,7 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.roinet.sumate" version="1.0.0">
   <name>SUMATE</name>
   <description>Localiza a tu fuerza de venta de una manera rapida y sencilla.</description>
-  <author href="http://phonegap.com" email="support@phonegap.com">Moises Tiburcio Obregon</author>
+  <author href="http://roinet.pe" email="mtiburcio@roinet.pe">Moises Tiburcio Obregon</author>
   <content src="index.html"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="android-minSdkVersion" value="14"/>
@@ -25,6 +25,7 @@
   <plugin name="cordova-plugin-statusbar" source="npm" spec="~2.1.2"/>
   <plugin name="cordova-plugin-vibration" source="npm" spec="~2.1.0"/>
   <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1"/>
+  <gap:plugin name="pushbots-cordova-plugin" source="npm" />
   <icon src="icon.png"/>
   <platform name="android">
     <icon src="www/res/icon/android/drawable-ldpi-icon.png" density="ldpi"/>
