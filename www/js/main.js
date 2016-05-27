@@ -104,14 +104,16 @@ $(document).ready(function () {
 	}
 
 	$("body").on('click', '#marcar-asistencia', function(e){
+		alert("click1")
 		fechaHora = fechaHoraAct();
+		alert("click2")
 		if( $('input:radio[name=marca]:checked').val() == null) {
 			alert("Es necesario seleccionar el tipo");
 		}else if ( rutaImagenG == "") {
 			alert("Es necesario tomar la foto para marcar la asistencia.");
 		}else{
 			alerta();
-			alerta("Aqui empieza la geolocalización")
+			alert("click3")
 			navigator.geolocation.getAccurateCurrentPosition(posisionOk, posisionFalla, { desiredAccuracy: 50, maxWait: 15000 });
 		}
 	});
