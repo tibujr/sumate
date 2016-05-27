@@ -86,11 +86,13 @@
     <allow-intent href="market:*" />
     <name>SUMATE</name>
     <description>Localiza a tu fuerza de venta de una manera rapida y sencilla.</description>
-    <author email="support@phonegap.com" href="http://phonegap.com">Moises Tiburcio Obregon</author>
+    <author email="mtiburcio@roinet.pe" href="http://roinet.pe">Moises Tiburcio Obregon</author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
+    <gap:plugin name="pushbots-cordova-plugin" source="npm" />
     <icon src="icon.png" />
+    <access uri="*" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
