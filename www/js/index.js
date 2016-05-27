@@ -1,4 +1,4 @@
-navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess, geolocationError, options) {
+/*navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess, geolocationError, options) {
     var lastCheckedPosition;
     var locationEventCount = 0;
 
@@ -41,7 +41,7 @@ navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess,
 
     var watchID = navigator.geolocation.watchPosition(checkLocation, onError, options);
     var timerID = setTimeout(stopTrying, options.maxWait); // Set a timeout that will abandon the location loop
-}
+}*/
 
 var app = {
    
