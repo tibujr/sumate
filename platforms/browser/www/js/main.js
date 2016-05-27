@@ -117,6 +117,7 @@ $(document).ready(function () {
 
 	function posisionOk(position)
 	{
+		alert("Encuenta la posicion :"+position.coords.latitude+", "+position.coords.longitude)
 		var x = position.coords.latitude;
 		var y = position.coords.longitude;
 		marcarAsistencia(x,y);
@@ -233,6 +234,7 @@ $(document).ready(function () {
 	//function marcarAsistencia()
 	function marcarAsistencia(x, y)
 	{
+		alert("Entra a marcar asistencia");
 		try
 		{
 			var datos = new FormData();
@@ -264,7 +266,7 @@ $(document).ready(function () {
 				},
 				error: function(data){
 					alertaOf();
-					$("#texto").html(JSON.stringify(data));
+					alert(data)
 			    }
 			});
 		}
