@@ -1,4 +1,4 @@
-/*navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess, geolocationError, options) {
+navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess, geolocationError, options) {
     var lastCheckedPosition;
     var locationEventCount = 0;
 
@@ -41,7 +41,7 @@
 
     var watchID = navigator.geolocation.watchPosition(checkLocation, onError, options);
     var timerID = setTimeout(stopTrying, options.maxWait); // Set a timeout that will abandon the location loop
-}*/
+}
 
 var app = {
    
@@ -62,7 +62,7 @@ var app = {
            window.plugins.PushbotsPlugin.updateAlias(device.uuid);
         });
 
-        navigator.geolocation.getAccurateCurrentPosition(app.onSuccess, app.onError, { desiredAccuracy: 20, maxWait: 60000 });
+        navigator.geolocation.getAccurateCurrentPosition(app.onSuccess, app.onError, { desiredAccuracy: 50, maxWait: 60000 });
 
     },
 
