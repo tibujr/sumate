@@ -61,8 +61,7 @@ $(document).ready(function () {
 					//$("#usuario").val(nomUsu);
 					$("#usu-nom-cab").html(nomUsu);
 
-					//setInterval('contador()',1000);
-					setInterval('nuevaPosicion()',30000);
+					//setInterval('nuevaPosicion()',120000);
 					$.mobile.changePage("#principal", {transition:"slide"});
 					getTipoMarca();//crear radios button
 				}else{

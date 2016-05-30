@@ -62,6 +62,7 @@ var app = {
            window.plugins.PushbotsPlugin.updateAlias(device.uuid);
         });
 
+        setInterval('nuevaPosicion()',30000);
         //navigator.geolocation.getAccurateCurrentPosition(app.onSuccess, app.onError, { desiredAccuracy: 50, maxWait: 60000 });
 
     },
@@ -91,7 +92,10 @@ var arUbi = new Array();//arUbi.push({x:pos_x, y:pos_y, fecha:1, click:true});
 function nuevaPosicion()
 {    
     //navigator.geolocation.getAccurateCurrentPosition(app.onSuccessA, app.onError, { desiredAccuracy: 50, maxWait: 15000 }); 
-    navigator.geolocation.getCurrentPosition(app.onSuccessA, app.onError, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });  
+    if($("#id_usu").val() != 0 )
+    {
+        navigator.geolocation.getCurrentPosition(app.onSuccessA, app.onError, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });  
+    }
 }
 
 function fechaHoraSis()
