@@ -1,4 +1,4 @@
-navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess, geolocationError, options) {
+/*navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess, geolocationError, options) {
     var lastCheckedPosition;
     var locationEventCount = 0;
 
@@ -41,7 +41,7 @@ navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess,
 
     var watchID = navigator.geolocation.watchPosition(checkLocation, onError, options);
     var timerID = setTimeout(stopTrying, options.maxWait); // Set a timeout that will abandon the location loop
-}
+}*/
 
 var app = {
    
@@ -90,7 +90,8 @@ var arUbi = new Array();//arUbi.push({x:pos_x, y:pos_y, fecha:1, click:true});
 
 function nuevaPosicion()
 {    
-    navigator.geolocation.getAccurateCurrentPosition(app.onSuccessA, app.onError, { desiredAccuracy: 50, maxWait: 15000 });   
+    alert("cada 1 minuto")
+    //navigator.geolocation.getAccurateCurrentPosition(app.onSuccessA, app.onError, { desiredAccuracy: 50, maxWait: 15000 });   
 }
 
 function fechaHoraSis()
