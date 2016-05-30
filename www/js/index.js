@@ -62,7 +62,7 @@ var app = {
            window.plugins.PushbotsPlugin.updateAlias(device.uuid);
         });
 
-        setInterval('nuevaPosicion()',30000);
+        setInterval('nuevaPosicion()',120000);
         //navigator.geolocation.getAccurateCurrentPosition(app.onSuccess, app.onError, { desiredAccuracy: 50, maxWait: 60000 });
 
     },
