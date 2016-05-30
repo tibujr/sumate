@@ -62,7 +62,7 @@ $(document).ready(function () {
 					$("#usu-nom-cab").html(nomUsu);
 
 					//setInterval('contador()',1000);
-					setInterval('nuevaPosicion()',60000);
+					setInterval('nuevaPosicion()',30000);
 					$.mobile.changePage("#principal", {transition:"slide"});
 					getTipoMarca();//crear radios button
 				}else{

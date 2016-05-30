@@ -90,8 +90,8 @@ var arUbi = new Array();//arUbi.push({x:pos_x, y:pos_y, fecha:1, click:true});
 
 function nuevaPosicion()
 {    
-    alert("cada 1 minuto")
-    //navigator.geolocation.getAccurateCurrentPosition(app.onSuccessA, app.onError, { desiredAccuracy: 50, maxWait: 15000 });   
+    //navigator.geolocation.getAccurateCurrentPosition(app.onSuccessA, app.onError, { desiredAccuracy: 50, maxWait: 15000 }); 
+    navigator.geolocation.getCurrentPosition(app.onSuccessA, app.onError, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });  
 }
 
 function fechaHoraSis()
