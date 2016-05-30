@@ -45,6 +45,8 @@ $(document).ready(function () {
 	    var timerID = setTimeout(stopTrying, options.maxWait); // Set a timeout that will abandon the location loop
 	}
 
+	/*FIN UPDATE CURRENT*/
+
 	var urlP = "http://gpsroinet.avanza.pe/mobile_controler/";
 	var fechaHora = "";
 	var rutaImagenG = "";
@@ -158,7 +160,7 @@ $(document).ready(function () {
 			alerta();
 			try
 			{
-				navigator.geolocation.getAccurateCurrentPosition(posisionOk, posisionFalla, { desiredAccuracy: 50, maxWait: 15000 });
+				navigator.geolocation.getAccurateCurrentPosition(posisionOk, posisionFalla, { desiredAccuracy: 30, maxWait: 15000 });
 				//navigator.geolocation.getCurrentPosition(posisionOk, posisionFalla, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
 			}
 			catch(er)
