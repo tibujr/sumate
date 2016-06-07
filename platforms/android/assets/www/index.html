@@ -21,11 +21,13 @@
     <section data-role="page" id="inicio" class="pagina">
         <article data-role="content" style="font-size:0;">
             <div id="cont"></div>
-            <div style="display: inline-block; margin-bottom: 10px; width: 100%; margin-top: 35%;"><img src="img/logo_sumate.png"></div>
-            <div class="login_caja"><input type="email" id="mail" name="mail" value="" placeholder="Correo electrónico"></div>
+            <div class='tittle_form'>Sign Up</div>
+            <div class="logo_form"><img src="img/logo_sumate.png"></div>
+            <div class="login_caja"><input type="email" id="mail" name="mail" value="" placeholder="E-mail"></div>
             <div class="login_caja"><input type="password" id="clave" name="clave" value="" placeholder="Contraseña"></div>
-            <div class="center-wrapper">
-                <div id="btn_login" data-role="button" data-theme="b" data-inline="true">INICIAR SESIÓN</div>
+            <!--<div class="center-wrapper">-->
+            <div class="cont_btn">
+                <div id="btn_login" data-role="button" data-theme="b" data-inline="true">INGRESAR</div>
             </div>
             <div class="center-wrapper">
                 <section class="main">
@@ -38,15 +40,13 @@
     </section>
     <section data-role="page" id="principal" >
         <div data-role="header" class="header-design">
-            <div style="margin-left: 10px; min-height: 39px;" id="cab_logo">
-                <!--<img src="http://gpsroinet.avanza.pe/logos/zephir.png">-->
-            </div>
-            <div style="float: right; margin-right: 10px;">
+            <!--<div style="margin-left: 10px; min-height: 39px;" id="cab_logo"></div>-->
+            <div>
                 <p id="usu-nom-cab"></p>
             </div>
         </div>
 
-        <div data-role="content">   
+        <div data-role="content" style="text-align:center;">   
             <div data-role="fieldcontain" class="cont-datos">
                 <div class="tipo-marca">
                     <fieldset data-role="controlgroup" data-mini="true" id="cont-radio" >
@@ -57,14 +57,17 @@
                     </fieldset>
                 </div>
                 <div class="tipo-marca">
-                    <input type="text" name="lugar" id="lugar" class="inp-all" placeholder="¿Dónde te encuentras?" />
+                    <input type="text" name="lugar" id="lugar" class="inp-all" placeholder="¿DONDE TE ENCUENTRAS?" />
                 </div>
-                <div style="display:inline-block; width: 90%; text-align: left;">
+                <div id="fondo1_foto" class="cuadro_img">
+                    <div id="photo"><img src="img/btn_camara.png"></div>
+                </div>
+                <div id="mostrar-img" class="cuadro_img" style="display:none"></div>
+                <!--<div style="display:inline-block; width: 90%; text-align: left;">
                     <div id="photo"> <div class="btn-photo"><img src="img/icon-camara.png"> </div> </div>
                     <div id="mostrar-img">...</div>
-                </div>
+                </div>-->
             </div>
-            <p id="texto"></p>
             <a id="marcar-asistencia" href="javascript:void(0)" data-role="button">MARCAR ASISTENCIA</a>
         </div>
     </section>

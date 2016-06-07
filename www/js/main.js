@@ -59,8 +59,7 @@ $(document).ready(function () {
 					//if(ama == null){ama = ""};
 					var nomUsu = data.nombre+' '+data.apellido_paterno;//+' '+ama;
 					//$("#usuario").val(nomUsu);
-					$("#usu-nom-cab").html(nomUsu);
-
+					$("#usu-nom-cab").html(nomUsu.toUpperCase());
 					//setInterval('nuevaPosicion()',120000);
 					$.mobile.changePage("#principal", {transition:"slide"});
 					getTipoMarca();//crear radios button
@@ -165,7 +164,9 @@ $(document).ready(function () {
 	function camaraOK(foto)
 	{
 		alerta();
-        $("#mostrar-img").html("<img src='"+foto+"'>")
+        $("#mostrar-img").html("<img src='"+foto+"'>") 
+        $("#mostrar-img").css({display: 'inline-block'});//mostramos
+        $("#fondo1_foto").css({display: 'none'});//mostramos
         convertImgToDataURLviaCanvas(foto, function(base64Img){
         	alertaOf();
         	rutaImagenG = base64Img;

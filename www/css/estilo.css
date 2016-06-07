@@ -4,32 +4,162 @@ body{
   padding: 0;
 }
 
+/*---SISTEMA-----*/
+
+::-webkit-input-placeholder { color: #bbc0c1; } /* WebKit */
+:-moz-placeholder { color: #bbc0c1; } /* Firefox 18- */
+::-moz-placeholder { color: #bbc0c1; } /* Firefox 19+ */
+:-ms-input-placeholder { color: #bbc0c1; } /* IE 10+ */
+
+/*FONT ProximaNovaS*/
+@font-face {
+font-family: ProximaNova;
+src: url(font/ProximaNovaRegular.otf) format("truetype");
+}
+@font-face {
+font-family: ProximaNovaBold;
+src: url(font/ProximaNovaBold.otf) format("truetype");
+}
+@font-face {
+font-family: ProximaNovaExtrabold;
+src: url(font/ProximaNovaExtrabold.otf) format("truetype");
+}
+@font-face {
+font-family: ProximaNovaLight;
+src: url(font/ProximaNovaLight.otf) format("truetype");
+}
+@font-face {
+font-family: ProximaNovaLightItalic;
+src: url(font/ProximaNovaLightItalic.otf) format("truetype");
+}
+@font-face {
+font-family: ProximaNovaRegularItalic;
+src: url(font/ProximaNovaRegularItalic.otf) format("truetype");
+}
+@font-face {
+font-family: ProximaNovaSemibold;
+src: url(font/ProximaNovaSemibold.otf) format("truetype");
+}
+@font-face {
+font-family: ProximaNovaSemiboldItalic;
+src: url(font/ProximaNovaSemiboldItalic.otf) format("truetype");
+}
+@font-face {
+font-family: ProximaNovaThin;
+src: url(font/ProximaNovaThin.otf) format("truetype");
+}
+
+/*FONT SourceSansPro*/
+@font-face {
+font-family: SourceSansPro;
+src: url(font/SourceSansPro-Regular.otf) format("truetype");
+}
+@font-face {
+font-family: SourceSansProBlack;
+src: url(font/SourceSansPro-Black.otf) format("truetype");
+}
+@font-face {
+font-family: SourceSansProBlackIt;
+src: url(font/SourceSansPro-BlackIt.otf) format("truetype");
+}
+@font-face {
+font-family: SourceSansProBold;
+src: url(font/SourceSansPro-Bold.otf) format("truetype");
+}
+@font-face {
+font-family: SourceSansProBoldIt;
+src: url(font/SourceSansPro-BoldIt.otf) format("truetype");
+}
+@font-face {
+font-family: SourceSansProExtraLight;
+src: url(font/SourceSansPro-ExtraLight.otf) format("truetype");
+}
+@font-face {
+font-family: SourceSansProExtraLightIt;
+src: url(font/SourceSansPro-ExtraLightIt.otf) format("truetype");
+}
+@font-face {
+font-family: SourceSansProIt;
+src: url(font/SourceSansPro-It.otf) format("truetype");
+}
+@font-face {
+font-family: SourceSansProLight;
+src: url(font/SourceSansPro-Light.otf) format("truetype");
+}
+@font-face {
+font-family: SourceSansProLightIt;
+src: url(font/SourceSansPro-LightIt.otf) format("truetype");
+}
+@font-face {
+font-family: SourceSansProSemibold;
+src: url(font/SourceSansPro-Semibold.otf) format("truetype");
+}
+@font-face {
+font-family: SourceSansProSemiboldIt;
+src: url(font/SourceSansPro-SemiboldIt.otf) format("truetype");
+}
+
+
+
+/*---FIN SISTEMA-----*/
+
 /*****    LOGIN   ****/
+
+.tittle_form{
+  font: 16.3px SourceSansPro, sans-serif;
+  display: inline-block;
+  letter-spacing: 0.7px;
+  color: #ffffff;
+  width: 100%;
+  margin-top: 9%;
+  text-shadow: none;
+}
+
+.logo_form{
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  padding: 40px 0;
+  margin: 0;
+}
+
 #inicio, .pagina
 {
-  background: rgba(94, 143, 50, 0.46);
+  background: #222a31;
   background-size: 100% 100%;
   text-align: center;
 }
 
-#btn_login{
-  border: 1px solid #d3183e;
-  background: #ff1848;
-  text-shadow: none;
-  font: 13px ProximaNovaLight, sans-serif;
-  border-radius: 3px;
+.cont_btn{
+  display: inline-block;
+  width: 88%;
   margin: 0;
+  margin-top: 40px;
+}
+
+#btn_login{
+  border: none;
+  background: #ffffff;
+  color: black;
+  width: 100%;
+  text-shadow: none;
+  font: 12.5px SourceSansProBold, sans-serif;
+  border-radius: 2px;
+  margin: 0;
+  box-shadow: 2px 2px 5px black;
+}
+
+#btn_login .ui-btn-inner{
+  padding: 11px;
+}
+
+#btn_login .ui-btn-text{
+  font-size: 12.5px;
 }
 
 .login_caja
 {
-  width: 230px;
-  height: 24px;
-  background: white;
-  padding: 2px 3% 6px 3%;
-  margin: 0 8% 10px 8%;
-  border: 1px solid #dddddd;
-  border-radius: 3px;
+  width: 88%;
   display: inline-block;
 }
 
@@ -40,13 +170,20 @@ body{
 
 .login_caja input
 {
-  font: 13px ProximaNova, sans-serif;
+  font: 15.4px SourceSansProLight, sans-serif;
+  letter-spacing: 0.3px;
+  font-weight: lighter;
   width: 100%;
-  /*margin-top: 3px;*/
   margin: 0;
   border: none;
-  background: white;
+  border-radius: 0;
+  border-bottom: 1px solid #ffffff;
+  padding: 20px 0;
+  text-align: center;
+  background: none;
   box-shadow: none !important;
+  text-shadow: none;
+  color: white;     
 }
 
 .login_caja div:hover{
@@ -61,8 +198,8 @@ body{
 
 .header-design div {
     display: inline-block;
-    padding: 5px;
     vertical-align: middle;
+    padding: 18px 0;
 }
 
 .header-design div img{
@@ -71,27 +208,31 @@ body{
 
 .header-design div p{
     text-shadow: none;
-    font-weight: bold;
-    color: #2F5959;
-    margin: 10px 0;
-    padding: 0;
-    font: 15px ProximaNovaLight, sans-serif;
+    color: #222a31;
+    margin: 0;
+    font: 16px SourceSansProBold, sans-serif;
+    letter-spacing: 0.4px;
 }
 
 
 /*------  FIN CABECER  -----*/
 
 #principal{
-  background: rgba(94, 143, 50, 0.2);
+  background: #ffffff;
 }
 
 #principal .header-design{
-  background: #FFFFFF;/*#2F5959;*/
+  background: #f5f5f5;
+  border: none;
+  text-align: center;
 }
 
 .cont-datos{
   text-align: center;
-  width: 100% !important;
+  width: 98% !important;
+  padding: 0;
+  display: inline-block;
+  border: none;
 }
 
 .cont-datos label{
@@ -105,48 +246,45 @@ body{
 }
 
 .cont-datos input.inp-all{
-    display: inline-block;
-    width: 80%;
-    margin: 10px 0 !important;
-    border: 1px solid #5B5B5B;
+    max-width: 100%;
+    padding: 16px 0;
+    margin: 0;
+    border: 1px solid #e5e9ea;
     background: white;
-    color: black;
-    font-size: 15px;
-    border-radius: 5px;
+    color: #535353;
+    border-radius: 4px;
     box-shadow: none;
-    text-shadow: none;
-    font: 15px ProximaNovaLight, sans-serif;
-    letter-spacing: 0.2px;
-    font-weight: lighter;
+    font: 13.3px SourceSansPro, sans-serif;
+    text-align: center;
+    letter-spacing: 0.5px;
 }
 
 #marcar-asistencia{
-    font: 13px ProximaNovaLight, sans-serif;
-    background: #283653;
-    color: white;
+    font: 12.5px SourceSansPro, sans-serif;
+    letter-spacing: 0.4px;
+    margin: 8px 0;
+    background: #52a4d7;
+    color: #ffffff;
     text-shadow: none;
-    width: 70%;
-    font-weight: lighter;
-    margin: 10px auto;
+    width: 100%;
     border: none;
+    border-radius: 4px;
+}
+
+#marcar-asistencia .ui-btn-inner{
+    border: none;
+    padding: 21px 0;
+}
+
+#marcar-asistencia .ui-btn-text{
+  font-size: 12.5px;
 }
 
 #photo{
-    display: inline-block;
-    cursor: pointer;
-    margin-right: 2%;
-    vertical-align: middle;
-}
-
-#photo img{
-    max-width: 40px;
-}
-
-.btn-photo{
-    display: inline-block;
-    background: #ADADAD;
-    border-radius: 25px;
-    padding: 5px;
+  display: inline-block;
+  cursor: pointer;
+  vertical-align: middle;
+  padding: 87px 0;
 }
 
 #mostrar-img{
@@ -162,27 +300,53 @@ body{
 
 .tipo-marca{
     display: inline-block;
-    width: 90%;
-    text-align: left;
+    width: 100%;
+    text-align: center;
+    margin: 8px 0;
 
 }
 
 .tipo-marca .ui-radio {
-    display: inline-block;
-    margin-right: 10px;
-    /*max-width: 48%;*/
+    display: inline-flex;
+    width: 50%;
+    float: left;
+}
+
+.tipo-marca .ui-radio:nth-child(2) {
+    float: none;
 }
 
 .tipo-marca .ui-radio label {
     width: 100%;
-    border-radius: 10px;
-    background: #2F5959;
-    color: white;
+    background: #f5f5f5;
+    color: #535353;
     border: none;
+    text-align: center;
+}
+
+.tipo-marca .ui-radio .ui-radio-on{
+  background: #30a5da;
+  color: #fff;
+}
+
+.tipo-marca .ui-radio label .ui-btn-inner{
+  padding: 14px 0;
 }
 
 .tipo-marca .ui-radio .ui-btn-text{
-  font-size: 12px;
+  font: 13.3px SourceSansPro, sans-serif;
+  letter-spacing: 0.7px;
+  font-weight: bold;
+}
+
+.cuadro_img{
+  display: inline-block;
+  width: 99.4%;
+  max-width: 99.4%;
+  border: 2px solid #30a5da;
+  border-style: dashed;
+  min-height: 266px;
+  margin: 8px 0;
 }
 
 /****** FIN INDEX ******/
