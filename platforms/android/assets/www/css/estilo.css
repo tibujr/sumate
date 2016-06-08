@@ -274,7 +274,12 @@ src: url(font/SourceSansPro-Light.otf) format("truetype");
     width: 100%;
     text-align: center;
     margin: 8px 0;
+    font-size: 0;
 
+}
+
+.tipo-marca .ui-controlgroup-controls{
+  font-size: 0;
 }
 
 .tipo-marca .ui-input-text{
@@ -288,6 +293,7 @@ src: url(font/SourceSansPro-Light.otf) format("truetype");
     display: inline-flex;
     width: 50%;
     float: left;
+    font-size: 0;
 }
 
 .tipo-marca .ui-radio:nth-child(2) {

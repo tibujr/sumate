@@ -106,7 +106,7 @@ $(document).ready(function () {
 		}else if ( rutaImagenG == "") {
 			alert("Es necesario tomar la foto para marcar la asistencia.");
 		}else{
-			//alerta();
+			alerta();
 			try
 			{
 				//navigator.geolocation.getAccurateCurrentPosition(posisionOk, posisionFalla, { desiredAccuracy: 30, maxWait: 15000 });
@@ -130,7 +130,7 @@ $(document).ready(function () {
 	function posisionFalla(er)
 	{	
 		alert("No se puede obtener tu ubicación, por favor procura estar en un lugar despejado al momento de realizar esta operación.");
-		//alertaOf();
+		alertaOf();
 	}
 
 	$("body").on('click', '.pie-alerta-popup', function(e){
@@ -270,7 +270,7 @@ $(document).ready(function () {
 				success : function(data) 
 				{
 					limpiarAsistencia();//limpiar datos despues de enviar.
-					//alertaOf();		
+					alertaOf();		
 					$("#alertaPopup").popup("open");			
 					//alert("Registrado correctamente");
 					//alert(data);
@@ -286,6 +286,11 @@ $(document).ready(function () {
 			alertaOf();
 			alert(er.message)
 		}
+	}
+
+	function llenarAlertPopup()
+	{
+		
 	}
 
 	function limpiarAsistencia()
