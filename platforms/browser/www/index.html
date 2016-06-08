@@ -9,9 +9,8 @@
     <title>SUMATE</title>
     <link rel="stylesheet" href="css/jquery.mobile-1.3.2.min.css" />
     <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile.custom.min.js"></script><!-- v1.3.2-->
     <link rel="stylesheet" type="text/css" href="css/estilo.css" />
-    <!--<script type="text/javascript" src="js/global.js"></script>-->
     <script type="text/javascript" src="js/main.js"></script>
 </head>
 
@@ -32,21 +31,21 @@
             <div class="center-wrapper">
                 <section class="main">
                     <div class="bar">
-                        <i class="sphere"></i><gap:plugin name="pushbots-cordova-plugin" source="npm" />
+                        <i class="sphere"></i>
                     </div>
                 </section>
             </div>
         </article>
     </section>
-    <section data-role="page" id="principal" >
+    <div data-role="page" id="principal" >
         <div data-role="header" class="header-design">
             <!--<div style="margin-left: 10px; min-height: 39px;" id="cab_logo"></div>-->
             <div>
                 <p id="usu-nom-cab"></p>
             </div>
         </div>
-
-        <div data-role="content" style="text-align:center;">   
+        <!--<div data-role="content" style="text-align:center;">  --> 
+        <div data-role="main" class="ui-content" style="text-align:center;">
             <div data-role="fieldcontain" class="cont-datos">
                 <div class="tipo-marca">
                     <fieldset data-role="controlgroup" data-mini="true" id="cont-radio" >
@@ -63,14 +62,30 @@
                     <div id="photo"><img src="img/btn_camara.png"></div>
                 </div>
                 <div id="mostrar-img" class="cuadro_img" style="display:none"></div>
-                <!--<div style="display:inline-block; width: 90%; text-align: left;">
-                    <div id="photo"> <div class="btn-photo"><img src="img/icon-camara.png"> </div> </div>
-                    <div id="mostrar-img">...</div>
-                </div>-->
             </div>
             <a id="marcar-asistencia" href="javascript:void(0)" data-role="button">MARCAR ASISTENCIA</a>
         </div>
-    </section>
+
+        <!--<a href="#alertaPopup" data-rel="popup" data-position-to="window">Open Popup</a>
+        <div id="prueba">PRUEBA</div>-->
+        <div data-role="popup" id="alertaPopup" data-overlay-theme="a" class="alert-popup">
+            <div class="icono-alerta-popup"> <img src="img/check.png"> </div>
+            <div class="mensaje-alerta-popup">¡REGISTRADO CORRECTAMENTE!</div>
+            <div class="extra-alerta-popup">
+                <div class="sector-infor-ap">
+                    <div class="ico-info-ap"></div>
+                    <div class="texto-izq-info-ap">Fecha</div>
+                    <div class="texto-der-info-ap">26 Febrero 2016</div>
+                </div>
+                <div class="sector-infor-ap">
+                    <div class="ico-info-ap"></div>
+                    <div class="texto-izq-info-ap">Hora</div>
+                    <div class="texto-der-info-ap">9:45 pm</div>
+                </div>
+            </div>
+            <div class="pie-alerta-popup"><div id="cerrar-popup">ACEPTAR</div></div>
+        </div>
+    </div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDrsti2iY75NsnEAHWW-1OepuNVuQpTOFE&sensor=false"> </script>

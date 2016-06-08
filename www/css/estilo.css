@@ -21,33 +21,14 @@ font-family: ProximaNovaBold;
 src: url(font/ProximaNovaBold.otf) format("truetype");
 }
 @font-face {
-font-family: ProximaNovaExtrabold;
-src: url(font/ProximaNovaExtrabold.otf) format("truetype");
-}
-@font-face {
 font-family: ProximaNovaLight;
 src: url(font/ProximaNovaLight.otf) format("truetype");
-}
-@font-face {
-font-family: ProximaNovaLightItalic;
-src: url(font/ProximaNovaLightItalic.otf) format("truetype");
 }
 @font-face {
 font-family: ProximaNovaRegularItalic;
 src: url(font/ProximaNovaRegularItalic.otf) format("truetype");
 }
-@font-face {
-font-family: ProximaNovaSemibold;
-src: url(font/ProximaNovaSemibold.otf) format("truetype");
-}
-@font-face {
-font-family: ProximaNovaSemiboldItalic;
-src: url(font/ProximaNovaSemiboldItalic.otf) format("truetype");
-}
-@font-face {
-font-family: ProximaNovaThin;
-src: url(font/ProximaNovaThin.otf) format("truetype");
-}
+
 
 /*FONT SourceSansPro*/
 @font-face {
@@ -55,28 +36,8 @@ font-family: SourceSansPro;
 src: url(font/SourceSansPro-Regular.otf) format("truetype");
 }
 @font-face {
-font-family: SourceSansProBlack;
-src: url(font/SourceSansPro-Black.otf) format("truetype");
-}
-@font-face {
-font-family: SourceSansProBlackIt;
-src: url(font/SourceSansPro-BlackIt.otf) format("truetype");
-}
-@font-face {
 font-family: SourceSansProBold;
 src: url(font/SourceSansPro-Bold.otf) format("truetype");
-}
-@font-face {
-font-family: SourceSansProBoldIt;
-src: url(font/SourceSansPro-BoldIt.otf) format("truetype");
-}
-@font-face {
-font-family: SourceSansProExtraLight;
-src: url(font/SourceSansPro-ExtraLight.otf) format("truetype");
-}
-@font-face {
-font-family: SourceSansProExtraLightIt;
-src: url(font/SourceSansPro-ExtraLightIt.otf) format("truetype");
 }
 @font-face {
 font-family: SourceSansProIt;
@@ -86,18 +47,7 @@ src: url(font/SourceSansPro-It.otf) format("truetype");
 font-family: SourceSansProLight;
 src: url(font/SourceSansPro-Light.otf) format("truetype");
 }
-@font-face {
-font-family: SourceSansProLightIt;
-src: url(font/SourceSansPro-LightIt.otf) format("truetype");
-}
-@font-face {
-font-family: SourceSansProSemibold;
-src: url(font/SourceSansPro-Semibold.otf) format("truetype");
-}
-@font-face {
-font-family: SourceSansProSemiboldIt;
-src: url(font/SourceSansPro-SemiboldIt.otf) format("truetype");
-}
+
 
 
 
@@ -106,7 +56,7 @@ src: url(font/SourceSansPro-SemiboldIt.otf) format("truetype");
 /*****    LOGIN   ****/
 
 .tittle_form{
-  font: 16.3px SourceSansPro, sans-serif;
+  font: 16.3px SourceSansProBold, sans-serif;
   display: inline-block;
   letter-spacing: 0.7px;
   color: #ffffff;
@@ -166,11 +116,12 @@ src: url(font/SourceSansPro-SemiboldIt.otf) format("truetype");
 .login_caja div
 {
   border:none;
+  box-shadow: none !important;
 }
 
 .login_caja input
 {
-  font: 15.4px SourceSansProLight, sans-serif;
+  /*font: 15.4px SourceSansProLight, sans-serif;
   letter-spacing: 0.3px;
   font-weight: lighter;
   width: 100%;
@@ -183,12 +134,31 @@ src: url(font/SourceSansPro-SemiboldIt.otf) format("truetype");
   background: none;
   box-shadow: none !important;
   text-shadow: none;
-  color: white;     
+  color: white;*/
+    font: 15.4px SourceSansPro, sans-serif;
+    letter-spacing: 0.3px;
+    font-weight: lighter;
+    width: 100% !important;
+    margin: 0 !important;
+    border: none !important;
+    border-radius: 0;
+    border-bottom: 1px solid #ffffff !important;
+    padding: 14px 0 !important;
+    text-align: center;
+    background: #222a31 !important;
+    box-shadow: none !important;
+    text-shadow: none;
+    color: white;     
+}
+
+/*textarea, input, textarea:focus, input:focus{
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .login_caja div:hover{
   border:none;
-}
+}*/
 
 /*******    FIN LOGIN   *******/
 
@@ -247,20 +217,20 @@ src: url(font/SourceSansPro-SemiboldIt.otf) format("truetype");
 
 .cont-datos input.inp-all{
     max-width: 100%;
-    padding: 16px 0;
+    padding: 16px 0 !important;
     margin: 0;
-    border: 1px solid #e5e9ea;
-    background: white;
+    border: 1px solid #e5e9ea !important;
+    background: white !important;
     color: #535353;
     border-radius: 4px;
     box-shadow: none;
-    font: 13.3px SourceSansPro, sans-serif;
+    font: 13.3px SourceSansProBold, sans-serif;
     text-align: center;
     letter-spacing: 0.5px;
 }
 
 #marcar-asistencia{
-    font: 12.5px SourceSansPro, sans-serif;
+    font: 12.5px SourceSansProBold, sans-serif;
     letter-spacing: 0.4px;
     margin: 8px 0;
     background: #52a4d7;
@@ -269,6 +239,7 @@ src: url(font/SourceSansPro-SemiboldIt.otf) format("truetype");
     width: 100%;
     border: none;
     border-radius: 4px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 #marcar-asistencia .ui-btn-inner{
@@ -306,6 +277,13 @@ src: url(font/SourceSansPro-SemiboldIt.otf) format("truetype");
 
 }
 
+.tipo-marca .ui-input-text{
+    background: none;
+    border: none;
+    padding: 0;
+    box-shadow: none !important;
+}
+
 .tipo-marca .ui-radio {
     display: inline-flex;
     width: 50%;
@@ -317,11 +295,17 @@ src: url(font/SourceSansPro-SemiboldIt.otf) format("truetype");
 }
 
 .tipo-marca .ui-radio label {
+    /*width: 100%;
+    background: #f5f5f5;
+    color: #535353;
+    border: none;
+    text-align: center;*/
     width: 100%;
     background: #f5f5f5;
     color: #535353;
     border: none;
     text-align: center;
+    border-radius: 0 !important;
 }
 
 .tipo-marca .ui-radio .ui-radio-on{
@@ -334,7 +318,7 @@ src: url(font/SourceSansPro-SemiboldIt.otf) format("truetype");
 }
 
 .tipo-marca .ui-radio .ui-btn-text{
-  font: 13.3px SourceSansPro, sans-serif;
+  font: 13.3px SourceSansProBold, sans-serif;
   letter-spacing: 0.7px;
   font-weight: bold;
 }
@@ -350,6 +334,93 @@ src: url(font/SourceSansPro-SemiboldIt.otf) format("truetype");
 }
 
 /****** FIN INDEX ******/
+
+/****** ALERTA POPUP ******/
+
+.alert-popup{
+  text-align: center;
+  border-radius: 4px;
+  border: none;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.icono-alerta-popup{
+  display: inline-flex;
+  margin: 40px 0;
+}
+
+.icono-alerta-popup img{
+  max-width: 74px;
+}
+
+.mensaje-alerta-popup{
+  font: 16.3px ProximaNova, sans-serif;
+  display: inline-block;
+  width: 70%;
+  max-width: 100%;
+  padding: 0 15%;
+  line-height: 24px;
+}
+
+.extra-alerta-popup{
+  display: inline-block;
+  width: 100%;
+  padding: 14px 0;
+}
+
+.sector-infor-ap{
+  display: inline-flex;
+  width: 100%;
+  padding: 13.6px 0;
+  border-top: 1px solid #e5e9ea;
+  border-bottom: 1px solid #e5e9ea;
+}
+
+.ico-info-ap{
+
+}
+
+.texto-izq-info-ap{
+  display: inline-block;
+  width: 35%;
+  margin: 0;
+  text-align: left;
+  color: #bcc0c8;
+  font: 13.3px SourceSansPro, sans-serif;
+  box-shadow: none;
+  padding-left: 4.19%;
+  float: left;
+}
+
+.texto-der-info-ap{
+  display: inline-block;
+  width: 54%;
+  margin: 0;
+  text-align: right;
+  font: 14.6px ProximaNova, sans-serif;
+  float: right;
+  margin-right: 4.19%;
+  box-shadow: none;
+}
+
+.pie-alerta-popup{
+  display: inline-block;
+  width: 100%;
+  background-color: #30a5da;
+  padding: 16px 0;
+  /* border-radius: 9px; */
+}
+
+.pie-alerta-popup div{
+  font: 14.6px SourceSansProBold, sans-serif;
+  text-decoration: none;
+  color: #ffffff !important;
+  box-shadow: none;
+  font-weight: lighter !important;
+}
+
+/****** FIN ALERTA POPUP **********/
 
 /***    LOADING  ****/
 

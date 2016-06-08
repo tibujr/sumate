@@ -38,9 +38,7 @@ $(document).ready(function () {
 			type: 'POST',
 			dataType: 'json', 
 			data: {usu:usu, pas:pas},
-			beforeSend : function (){
-	            alerta();
-	        },
+			beforeSend : function (){},
 			url: urlP+"login",
 			success : function(data) 
 			{
@@ -108,7 +106,7 @@ $(document).ready(function () {
 		}else if ( rutaImagenG == "") {
 			alert("Es necesario tomar la foto para marcar la asistencia.");
 		}else{
-			alerta();
+			//alerta();
 			try
 			{
 				//navigator.geolocation.getAccurateCurrentPosition(posisionOk, posisionFalla, { desiredAccuracy: 30, maxWait: 15000 });
@@ -132,9 +130,16 @@ $(document).ready(function () {
 	function posisionFalla(er)
 	{	
 		alert("No se puede obtener tu ubicación, por favor procura estar en un lugar despejado al momento de realizar esta operación.");
-		alertaOf();
-		//alert(er);
+		//alertaOf();
 	}
+
+	$("body").on('click', '.pie-alerta-popup', function(e){
+		$("#alertaPopup").popup("close");
+	});
+
+	/*$("body").on('click', '#prueba', function(e){
+		$("#alertaPopup").popup("open");
+	});*/
 
 	/**-------------------------- INICIO CAMARA---------------------------------*/
 
@@ -260,15 +265,14 @@ $(document).ready(function () {
 				data: datos,
 				processData: false,
 				contentType: false,
-				beforeSend : function (){
-		            alerta();
-		        },
+				beforeSend : function (){},
 				url: urlP+"marcarAsistencia_debug",
 				success : function(data) 
 				{
 					limpiarAsistencia();//limpiar datos despues de enviar.
-					alertaOf();					
-					alert("Registrado correctamente");
+					//alertaOf();		
+					$("#alertaPopup").popup("open");			
+					//alert("Registrado correctamente");
 					//alert(data);
 				},
 				error: function(data){
@@ -287,7 +291,9 @@ $(document).ready(function () {
 	function limpiarAsistencia()
 	{
 		$("#lugar").val("");
-		$("#mostrar-img").html("...");
+		$("#mostrar-img").html("");
+		$("#mostrar-img").css({display: 'none'});
+		$("#fondo1_foto").css({display: 'inline-block'});
 
 		rutaImagenG = "";
 		nombreImagen = "";
