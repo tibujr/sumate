@@ -271,6 +271,12 @@ $(document).ready(function () {
 				{
 					limpiarAsistencia();//limpiar datos despues de enviar.
 					alertaOf();		
+
+					var objExtra = new Array();
+					objExtra.push({ico:null, campo:"Fecha", valor:"26 Febrero 2016"});
+					objExtra.push({ico:null, campo:"Hora", valor:"9:45 pm"});
+					llenarAlertPopup("img/check.png", "¡REGISTRADO CORRECTAMENTE!", objExtra);
+
 					$("#alertaPopup").popup("open");			
 					//alert("Registrado correctamente");
 					//alert(data);
@@ -288,9 +294,27 @@ $(document).ready(function () {
 		}
 	}
 
-	function llenarAlertPopup()
+	function llenarAlertPopup(logo, mensaje, objExtra)
 	{
-		
+		var nObj = "";
+
+		if(objExtra)
+		{
+			for(var i=0 ; i<objExtra.length ; i++)
+			{
+				nObj += "<div class='sector-infor-ap'>";
+                nObj += "<div class='ico-info-ap'></div>";
+                nObj += "<div class='texto-izq-info-ap'>"+objExtra[i].campo+"</div>";
+                nObj += "<div class='texto-der-info-ap'>"+objExtra[i].valor+"</div>";
+                nObj += "</div>";
+			}
+		}
+
+		$("#logo-ap img").attr("src", logo);
+		$("#menasaje-ap").html(mensaje);
+		$("#extra-ap").html(nObj);
+
+		//$("#alertaPopup").popup("open");
 	}
 
 	function limpiarAsistencia()

@@ -5,11 +5,10 @@ body{
 }
 
 /*---SISTEMA-----*/
-
-::-webkit-input-placeholder { color: #bbc0c1; } /* WebKit */
-:-moz-placeholder { color: #bbc0c1; } /* Firefox 18- */
-::-moz-placeholder { color: #bbc0c1; } /* Firefox 19+ */
-:-ms-input-placeholder { color: #bbc0c1; } /* IE 10+ */
+::-webkit-input-placeholder { color: #bbc0c1; text-align: center;} /* WebKit */
+:-moz-placeholder { color: #bbc0c1; text-align: center;} /* Firefox 18- */
+::-moz-placeholder { color: #bbc0c1; text-align: center;} /* Firefox 19+ */
+:-ms-input-placeholder { color: #bbc0c1; text-align: center;} /* IE 10+ */
 
 /*FONT ProximaNovaS*/
 @font-face {
@@ -294,6 +293,7 @@ src: url(font/SourceSansPro-Light.otf) format("truetype");
     width: 50%;
     float: left;
     font-size: 0;
+    max-width: 50%
 }
 
 .tipo-marca .ui-radio:nth-child(2) {
