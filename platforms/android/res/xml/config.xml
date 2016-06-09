@@ -88,6 +88,7 @@
     <description>Localiza a tu fuerza de venta de una manera rapida y sencilla.</description>
     <author email="mtiburcio@roinet.pe" href="http://roinet.pe">Moises Tiburcio Obregon</author>
     <content src="index.html" />
+    <preference name="orientation" value="portrait" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
     <gap:plugin name="pushbots-cordova-plugin" source="npm" />

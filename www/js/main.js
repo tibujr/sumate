@@ -9,6 +9,12 @@ $(document).ready(function () {
 
 	function metodoInicializacion()
 	{
+		var altura = $('body').height();
+		var alturaCabecera = $("#header-principal").height();
+		console.log("altura:"+alturaCabecera)
+		$('.cuerpo-pagina').css({height:altura-85+'px'});
+		//$('.cuerpo-pagina').animate({scrollTop: 0});
+
 		llenarCamposLogin();
 		document.addEventListener("backbutton", onBackKeyDown, false);//DESACTIVAR BOTON ATRAS
 	}
