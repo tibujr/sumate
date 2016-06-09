@@ -68,13 +68,14 @@ $(document).ready(function () {
 					$.mobile.changePage("#principal", {transition:"slide"});
 					getTipoMarca();//crear radios button
 				}else{
-					alert("error: verificar datos");
+					//alert("error: verificar datos");
+					llenarAlertPopup("img/error.png", "¡USUARIO O CONTRASEÑA INCORRECTO!", false);
 				}
 			},
 			error: function(data){
 				alertaOf();
-
-				llenarAlertPopup("img/error.png", "¡USUARIO O CONTRASEÑA INCORRECTO!", false);
+				llenarAlertPopup("img/error.png", "¡ERROR DE SISTMA! REINICIAR APLICATIVO", false);
+				
 				//alert("Verifica tu concexión a internet y vuelve a intentarlo.")
 		    }
 		});
@@ -287,7 +288,7 @@ $(document).ready(function () {
 					objExtra.push({ico:null, campo:"Hora", valor:"9:45 pm"});
 					llenarAlertPopup("img/check.png", "¡REGISTRADO CORRECTAMENTE!", objExtra);
 
-					$("#alertaPopup").popup("open");			
+					//$("#alertaPopup").popup("open");			
 					//alert("Registrado correctamente");
 					//alert(data);
 				},
@@ -325,7 +326,7 @@ $(document).ready(function () {
 		$("#menasaje-ap").html(mensaje);
 		$("#extra-ap").html(nObj);
 
-		//$("#alertaPopup").popup("open");
+		$("#alertaPopup").popup("open");
 	}
 
 	function limpiarAsistencia()
