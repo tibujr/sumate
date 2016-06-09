@@ -74,7 +74,7 @@ $(document).ready(function () {
 			error: function(data){
 				alertaOf();
 
-				llenarAlertPopup("img/error.png", "¡USUARIO O CONTRASEÑA INCORRECTO!", null);
+				llenarAlertPopup("img/error.png", "¡USUARIO O CONTRASEÑA INCORRECTO!", false);
 				//alert("Verifica tu concexión a internet y vuelve a intentarlo.")
 		    }
 		});
@@ -139,7 +139,7 @@ $(document).ready(function () {
 	{	
 		//alert("No se puede obtener tu ubicación, por favor procura estar en un lugar despejado al momento de realizar esta operación.");
 		alertaOf();
-		llenarAlertPopup("img/error.png", "¡ERROR AL OBTENER UBICACIÓN! VERIFICA EL GPS E INTERNET Y VUELVE A INTENTAR", null);
+		llenarAlertPopup("img/error.png", "¡ERROR AL OBTENER UBICACIÓN! VERIFICA EL GPS E INTERNET Y VUELVE A INTENTAR", false);
 	}
 
 	$("body").on('click', '.pie-alerta-popup', function(e){
@@ -171,7 +171,7 @@ $(document).ready(function () {
 		catch(er)
 		{
 			//alert("Error : "+ er );
-			llenarAlertPopup("img/error.png", "¡PROBLEMAS AL ABRIR LA CAMARA! REINICIAR EL APP", null);
+			llenarAlertPopup("img/error.png", "¡PROBLEMAS AL ABRIR LA CAMARA! REINICIAR EL APP", false);
 		}
 		
 	}
@@ -294,7 +294,7 @@ $(document).ready(function () {
 				error: function(data){
 					alertaOf();
 					//alert(data)
-					llenarAlertPopup("img/error.png", "¡ERROR! POR FAVOR VUELVE A INTENTAR.", null);
+					llenarAlertPopup("img/error.png", "¡ERROR! POR FAVOR VUELVE A INTENTAR", false);
 			    }
 			});
 		}
