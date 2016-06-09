@@ -12,7 +12,7 @@ $(document).ready(function () {
 		var altura = $('body').height();
 		var alturaCabecera = $("#header-principal").height();
 		console.log("altura:"+alturaCabecera)
-		$('.cuerpo-pagina').css({height:altura-85+'px'});
+		$('.cuerpo-pagina').css({height:(altura-85)+'px'});
 		//$('.cuerpo-pagina').animate({scrollTop: 0});
 
 		llenarCamposLogin();
@@ -73,7 +73,9 @@ $(document).ready(function () {
 			},
 			error: function(data){
 				alertaOf();
-				alert("Verifica tu concexión a internet y vuelve a intentarlo.")
+
+				llenarAlertPopup("img/error.png", "¡USUARIO O CONTRASEÑA INCORRECTO!", null);
+				//alert("Verifica tu concexión a internet y vuelve a intentarlo.")
 		    }
 		});
 	}
@@ -135,8 +137,9 @@ $(document).ready(function () {
 
 	function posisionFalla(er)
 	{	
-		alert("No se puede obtener tu ubicación, por favor procura estar en un lugar despejado al momento de realizar esta operación.");
+		//alert("No se puede obtener tu ubicación, por favor procura estar en un lugar despejado al momento de realizar esta operación.");
 		alertaOf();
+		llenarAlertPopup("img/error.png", "¡ERROR AL OBTENER UBICACIÓN! VERIFICA EL GPS E INTERNET Y VUELVE A INTENTAR", null);
 	}
 
 	$("body").on('click', '.pie-alerta-popup', function(e){
@@ -167,7 +170,8 @@ $(document).ready(function () {
 		}
 		catch(er)
 		{
-			alert("Error : "+ er );
+			//alert("Error : "+ er );
+			llenarAlertPopup("img/error.png", "¡PROBLEMAS AL ABRIR LA CAMARA! REINICIAR EL APP", null);
 		}
 		
 	}
@@ -212,7 +216,7 @@ $(document).ready(function () {
 
 	function camaraError(msj)
 	{
-		alert(msj)
+		//alert(msj)
 	}
 
 
@@ -289,7 +293,8 @@ $(document).ready(function () {
 				},
 				error: function(data){
 					alertaOf();
-					alert(data)
+					//alert(data)
+					llenarAlertPopup("img/error.png", "¡ERROR! POR FAVOR VUELVE A INTENTAR", null);
 			    }
 			});
 		}
