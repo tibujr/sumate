@@ -5,6 +5,7 @@
     <author email="mtiburcio@roinet.pe" href="http://roinet.pe">Moises Tiburcio Obregon</author>
     <content src="index.html" />
     <gap:plugin name="pushbots-cordova-plugin" source="npm" />
+    <gap:plugin name="cordova-plugin-mauron85-background-geolocation" source="npm" />
     <icon src="icon.png" />
     <access uri="*" />
     <access origin="*" />

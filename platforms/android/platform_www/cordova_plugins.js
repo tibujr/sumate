@@ -459,6 +459,13 @@ module.exports = [
             "navigator.notification",
             "navigator"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-mauron85-background-geolocation/www/backgroundGeoLocation.js",
+        "id": "cordova-plugin-mauron85-background-geolocation.backgroundGeoLocation",
+        "clobbers": [
+            "backgroundGeoLocation"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -485,7 +492,8 @@ module.exports.metadata =
     "cordova-plugin-splashscreen": "3.2.2",
     "cordova-plugin-statusbar": "2.1.3",
     "cordova-plugin-vibration": "2.1.1",
-    "cordova-plugin-whitelist": "1.2.2"
+    "cordova-plugin-whitelist": "1.2.2",
+    "cordova-plugin-mauron85-background-geolocation": "1.0.2"
 };
 // BOTTOM OF METADATA
 });

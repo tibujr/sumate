@@ -10,8 +10,6 @@ $(document).ready(function () {
 	function metodoInicializacion()
 	{
 		var altura = $('body').height();
-		var alturaCabecera = $("#header-principal").height();
-		console.log("altura:"+alturaCabecera)
 		$('.cuerpo-pagina').css({height:(altura-85)+'px'});
 		//$('.cuerpo-pagina').animate({scrollTop: 0});
 
@@ -66,10 +64,10 @@ $(document).ready(function () {
 					$("#usu-nom-cab").html(nomUsu.toUpperCase());
 					//setInterval('nuevaPosicion()',120000);
 					$.mobile.changePage("#principal", {transition:"slide"});
-					getTipoMarca();//crear radios button
+					//getTipoMarca();//crear radios button
 				}else{
-					//alert("error: verificar datos");
-					llenarAlertPopup("img/error.png", "¡USUARIO O CONTRASEÑA INCORRECTO!", false);
+					alert("error: verificar datos");
+					//llenarAlertPopup("img/error.png", "¡USUARIO O CONTRASEÑA INCORRECTO!", false);
 				}
 			},
 			error: function(data){
@@ -81,7 +79,7 @@ $(document).ready(function () {
 		});
 	}
 
-	function getTipoMarca()
+	/*function getTipoMarca()
 	{
 		$.ajax({
 			type: 'POST',
@@ -90,7 +88,7 @@ $(document).ready(function () {
 			url: urlP+"getTipoMarca",
 			success : function(data) 
 			{
-				/*$("#cont-radio").html("");
+				/*--$("#cont-radio").html("");
 				for (var i = 0; i < data.length; i++) {
 					var appe = "<div class='ui-radio'>"+
 								"<input type='radio' name='marca' id='marca-"+data[i].id+"' value='"+data[i].id+"'>"+
@@ -100,13 +98,13 @@ $(document).ready(function () {
 								"<span class='ui-icon ui-icon-radio-off ui-icon-shadow'>&nbsp;</span>"+
 								"</span></label></div>";
 					$("#cont-radio").append(appe);
-				}*/
+				}--
 			},
 			error: function(data){
 				console.log(data)
 		    }
 		});
-	}
+	}*/
 
 	$("body").on('click', '#marcar-asistencia', function(e){
 		fechaHora = fechaHoraAct();
@@ -284,9 +282,9 @@ $(document).ready(function () {
 					alertaOf();		
 
 					var objExtra = new Array();
-					objExtra.push({ico:null, campo:"Fecha", valor:"26 Febrero 2016"});
-					objExtra.push({ico:null, campo:"Hora", valor:"9:45 pm"});
-					llenarAlertPopup("img/check.png", "¡REGISTRADO CORRECTAMENTE!", objExtra);
+					/*objExtra.push({ico:null, campo:"Fecha", valor:"26 Febrero 2016"});
+					objExtra.push({ico:null, campo:"Hora", valor:"9:45 pm"});*/
+					llenarAlertPopup("img/check.png", "¡REGISTRADO CORRECTAMENTE!", false);
 
 					//$("#alertaPopup").popup("open");			
 					//alert("Registrado correctamente");
