@@ -21,7 +21,7 @@ var ENV = (function() {
 
 var app = {
 
-    var arUbi = new Array();//arUbi.push({x:pos_x, y:pos_y, fecha:1, click:true});
+    //var arUbi = new Array();//arUbi.push({x:pos_x, y:pos_y, fecha:1, click:true});
    
     initialize: function() {
         this.bindEvents();
