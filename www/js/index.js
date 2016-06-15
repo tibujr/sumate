@@ -42,10 +42,10 @@ var app = {
 
     onDeviceReady: function() {
 
-        window.plugins.PushbotsPlugin.initialize("574604d54a9efad3cf8b4567", {"android":{"sender_id":"484433023834"}});
+        /*window.plugins.PushbotsPlugin.initialize("574604d54a9efad3cf8b4567", {"android":{"sender_id":"484433023834"}});
         window.plugins.PushbotsPlugin.on("registered", function(token){
            window.plugins.PushbotsPlugin.updateAlias(device.uuid);
-        });
+        });*/
 
         window.addEventListener('batterystatus', app.onBatteryStatus, false);
         app.configureBackgroundGeoLocation();
