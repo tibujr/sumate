@@ -139,19 +139,9 @@ var app = {
                 activitiesInterval: 10000
             });
 
-            /*var settings = ENV.settings;
-
-            if (settings.enabled == 'true') {
-                app.startTracking();
-
-                if (settings.aggressive == 'true') {
-                    backgroundGeoLocation.changePace(true);
-                }
-            }*/
-
             app.startTracking();
         }catch(er){
-            alert("Error RS003: Reiniciar el APP, de persistir el problema comunicate con encargado de SISTEMAS.")
+            alert("Error RS003: Reiniciar el APP, de persistir el problema comunicate con encargado de SISTEMAS."+er)
         }
     },
 
