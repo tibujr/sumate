@@ -134,7 +134,7 @@ var app = {
                 activityType: 'AutomotiveNavigation',
                 debug: true, // <-- enable this hear sounds for background-geolocation life-cycle.
                 stopOnTerminate: false, // <-- enable this to clear background location settings when the app terminates
-                locationService: backgroundGeoLocation.service.ANDROID_FUSED_LOCATION,//backgroundGeoLocation.service[ENV.settings.locationService],
+                locationService: backgroundGeoLocation.service[ENV.settings.locationService],//backgroundGeoLocation.service.ANDROID_FUSED_LOCATION,
                 fastestInterval: 5000,
                 activitiesInterval: 10000
             });
