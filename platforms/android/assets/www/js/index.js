@@ -92,15 +92,13 @@ var app = {
                     },
                     device: anonDevice
                 };
-                console.log('[js] BackgroundGeoLocation callback:  ' + location.latitude + ',' + location.longitude);
-                $("#loc").append('<p> A)'+ location.latitude+','+location.longitude+'</p>');
+                alert("envia pos")
                 app.enviarUbicacion(location);
             };
 
             var failureFn = function(err) {
                 //console.log('BackgroundGeoLocation err', err);
-                window.alert('BackgroundGeoLocation err: ' + JSON.stringify(err));
-                $("#loc").append('<p> E) 0,0 </p>')
+               alert("Error RS002: Reiniciar el APP, de persistir el problema comunicate con encargado de SISTEMAS.")
             };
 
            /* backgroundGeoLocation.onStationary(function(location) {
@@ -120,7 +118,7 @@ var app = {
             try{
                 navigator.geolocation.getCurrentPosition(function(location) { console.log("location"); },function(err) { console.log("error en navigator.geolocation"); });
             }catch(er){
-                $("#log").append('<p> EROOR getCurrentPosition: '+er+' </p>')
+                alert("Error RS001: Verificar GPS y conexión de internet.")
             }
             
 
@@ -153,7 +151,7 @@ var app = {
 
             app.startTracking();
         }catch(er){
-            $("#log").append('<p>ERROR:'+er+'</p>')
+            alert("Error RS003: Reiniciar el APP, de persistir el problema comunicate con encargado de SISTEMAS.")
         }
     },
 
