@@ -65,9 +65,6 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
-    <feature name="BackgroundGeoLocation">
-        <param name="android-package" value="com.tenforwardconsulting.cordova.bgloc.BackgroundGeolocationPlugin" />
-    </feature>
     <icon density="ldpi" src="www/res/icon/android/drawable-ldpi-icon.png" />
     <icon density="mdpi" src="www/res/icon/android/drawable-mdpi-icon.png" />
     <icon density="hdpi" src="www/res/icon/android/drawable-hdpi-icon.png" />
@@ -94,7 +91,6 @@
     <preference name="orientation" value="portrait" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
-    <preference name="android-build-tool" value="gradle" />
     <gap:plugin name="pushbots-cordova-plugin" source="npm" />
     <icon src="icon.png" />
     <access uri="*" />

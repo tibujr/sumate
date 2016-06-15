@@ -9,9 +9,6 @@
     "installed_plugins": {
         "pushbots-cordova-plugin": {
             "PACKAGE_NAME": "com.roinet.sumate"
-        },
-        "cordova-plugin-mauron85-background-geolocation": {
-            "PACKAGE_NAME": "com.roinet.sumate"
         }
     },
     "dependent_plugins": {}
