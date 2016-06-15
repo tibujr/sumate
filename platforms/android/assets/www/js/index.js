@@ -1,134 +1,273 @@
-/*navigator.geolocation.getAccurateCurrentPosition = function (geolocationSuccess, geolocationError, options) {
-    var lastCheckedPosition;
-    var locationEventCount = 0;
+var ENV = (function() {
 
-    options = options || {};
+    var localStorage = window.localStorage;
 
-    var checkLocation = function (position) {
-        lastCheckedPosition = position;
-        ++locationEventCount;
-        
-        if ((position.coords.accuracy <= options.desiredAccuracy) && (locationEventCount > 0)) {
-            clearTimeout(timerID);
-            navigator.geolocation.clearWatch(watchID);
-            foundPosition(position);
-        } else {
-            //console.log("en progreso: "+ position)
+    return {
+        dbName: 'locations',
+        settings: {
+            enabled:         localStorage.getItem('enabled')     || 'true',
+            aggressive:      localStorage.getItem('aggressive')  || 'false',
+            locationService: localStorage.getItem('locationService')  || 'ANDROID_DISTANCE_FILTER'
+        },
+        toggle: function(key) {
+            var value    = localStorage.getItem(key),
+                newValue = ((new String(value)) == 'true') ? 'false' : 'true';
+
+            localStorage.setItem(key, newValue);
+            return newValue;
         }
-    }
-
-    var stopTrying = function () {
-        navigator.geolocation.clearWatch(watchID);
-        foundPosition(lastCheckedPosition);
-    }
-
-    var onError = function (error) {
-        clearTimeout(timerID);
-        navigator.geolocation.clearWatch(watchID);
-        geolocationError(error);
-    }
-
-    var foundPosition = function (position) {
-        geolocationSuccess(position);
-    }
-
-    if (!options.maxWait) options.maxWait = 10000; // Default 10 seconds
-    if (!options.desiredAccuracy) options.desiredAccuracy = 10; // Default 20 meters
-    if (!options.timeout) options.timeout = options.maxWait; // Default to maxWait
-
-    options.maximumAge = 0; // Forzar solo ubicaciones actuales
-    options.enableHighAccuracy = true; // Fuerza alta precisión (de lo contrario, ¿por qué está usando esta función?)
-
-    var watchID = navigator.geolocation.watchPosition(checkLocation, onError, options);
-    var timerID = setTimeout(stopTrying, options.maxWait); // Set a timeout that will abandon the location loop
-}*/
+    };
+})();
 
 var app = {
-   
+
+    location: undefined,
+
+    path: undefined,
+
+    locations: [],
+    isTracking: false,
+
     initialize: function() {
         this.bindEvents();
     },
 
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+        document.addEventListener('pause', this.onPause, false);
+        document.addEventListener('resume', this.onResume, false);
+        document.addEventListener("offline", this.onOffline, false);
+        document.addEventListener("online", this.onOnline, false);
     },
 
     onDeviceReady: function() {
-        //app.receivedEvent('deviceready');
+        window.addEventListener('batterystatus', app.onBatteryStatus, false);
+        app.configureBackgroundGeoLocation();
+        backgroundGeoLocation.getLocations(app.postLocationsWasKilled);
+        //backgroundGeoLocation.watchLocationMode(app.onLocationCheck);
+    },
 
-        window.plugins.PushbotsPlugin.initialize("574604d54a9efad3cf8b4567", {"android":{"sender_id":"484433023834"}});
+    /*onLocationCheck: function (enabled) {
+        if (app.isTracking && !enabled) {
+            var showSettings = window.confirm('No location provider enabled. Should I open location setting?');
+            if (showSettings === true) {
+                backgroundGeoLocation.showLocationSettings();
+            }
+        }
+    },*/
+
+    onBatteryStatus: function(ev) {
+        app.battery = {
+            level: ev.level / 100,
+            is_charging: ev.isPlugged
+        };
+        console.log('[DEBUG]: battery', app.battery);
+    },
+
+    getDeviceInfo: function () {
+        return {
+            model: device.model,
+            version: device.version,
+            platform: device.platform,
+            uuid: device.uuid//md5([device.uuid, this.salt].join())
+        };
+    },
+
+    configureBackgroundGeoLocation: function() {
+        try{
+            var anonDevice = app.getDeviceInfo();
+
+            var yourAjaxCallback = function(response) {
+                backgroundGeoLocation.finish();
+            };
+
+            var callbackFn = function(location) {
+                var data = {
+                    location: {
+                        uuid: new Date().getTime(),
+                        timestamp: location.time,
+                        battery: app.battery,
+                        coords: location,
+                        service_provider: ENV.settings.locationService
+                    },
+                    device: anonDevice
+                };
+                console.log('[js] BackgroundGeoLocation callback:  ' + location.latitude + ',' + location.longitude);
+                $("#loc").append('<p> A)'+ location.latitude+','+location.longitude+'</p>');
+                app.enviarUbicacion(location);
+            };
+
+            var failureFn = function(err) {
+                //console.log('BackgroundGeoLocation err', err);
+                window.alert('BackgroundGeoLocation err: ' + JSON.stringify(err));
+                $("#loc").append('<p> E) 0,0 </p>')
+            };
+
+           /* backgroundGeoLocation.onStationary(function(location) {
+                if (!app.stationaryRadius) {
+                    app.stationaryRadius = new google.maps.Circle({
+                        fillColor: '#cc0000',
+                        fillOpacity: 0.4,
+                        strokeOpacity: 0,
+                        map: app.map
+                    });
+                }
+                var radius = (location.accuracy < location.radius) ? location.radius : location.accuracy;
+                var center = new google.maps.LatLng(location.latitude, location.longitude);
+                app.stationaryRadius.setRadius(radius);
+                app.stationaryRadius.setCenter(center);
+            });*/
+            try{
+                navigator.geolocation.getCurrentPosition(function(location) { console.log("location"); },function(err) { console.log("error en navigator.geolocation"); });
+            }catch(er){
+                $("#log").append('<p> EROOR getCurrentPosition: '+er+' </p>')
+            }
+            
+
+            backgroundGeoLocation.configure(callbackFn, failureFn, {
+                desiredAccuracy: 10,
+                stationaryRadius: 50,
+                distanceFilter: 50,
+                locationTimeout: 30,
+                //notificationIcon: 'mappointer',
+                //notificationIconColor: '#FEDD1E',
+                //notificationTitle: 'Background tracking', // <-- android only, customize the title of the notification
+                //notificationText: 'Hola que hace',//ENV.settings.locationService, // <-- android only, customize the text of the notification
+                activityType: 'AutomotiveNavigation',
+                debug: true, // <-- enable this hear sounds for background-geolocation life-cycle.
+                stopOnTerminate: false, // <-- enable this to clear background location settings when the app terminates
+                locationService: backgroundGeoLocation.service[ENV.settings.locationService],//backgroundGeoLocation.service.ANDROID_FUSED_LOCATION,
+                fastestInterval: 5000,
+                activitiesInterval: 10000
+            });
+
+            /*var settings = ENV.settings;
+
+            if (settings.enabled == 'true') {
+                app.startTracking();
+
+                if (settings.aggressive == 'true') {
+                    backgroundGeoLocation.changePace(true);
+                }
+            }*/
+
+            app.startTracking();
+        }catch(er){
+            $("#log").append('<p>ERROR:'+er+'</p>')
+        }
+    },
+
+    onPause: function() {
+        console.log('- onPause');
+        try{
+            //navigator.geolocation.watchPosition(app.enviarUbicacion, app.onError, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true } );
+        }catch(er){
+            alert("ERROR ONPAUSE"+er)
+        }
         
-        window.plugins.PushbotsPlugin.on("registered", function(token){
-           window.plugins.PushbotsPlugin.updateAlias(device.uuid);
-        });
+        // app.stopPositionWatch();
+    },
 
-        setInterval('nuevaPosicion()',120000);
-        //navigator.geolocation.getAccurateCurrentPosition(app.onSuccess, app.onError, { desiredAccuracy: 50, maxWait: 60000 });
+    onError: function(){
 
     },
 
-    //onSuccess: function(position) {},
+    onResume: function() {
+        console.log('- onResume');
+    },
 
-    onSuccessA: function(position) {
-        enviarUbicacion(position.coords.latitude, position.coords.longitude)//x,y
+    startTracking: function () {
+        backgroundGeoLocation.start();
+        /*app.isTracking = true;
+        backgroundGeoLocation.isLocationEnabled(app.onLocationCheck);*/
+    },
+
+    stopTracking: function () {
+        backgroundGeoLocation.stop();
+        app.isTracking = false;
+    },
+
+    postLocation: function (data) {
+        /*return $.ajax({
+            url: app.postUrl,
+            type: 'POST',
+            data: JSON.stringify(data),
+            // dataType: 'html',
+            contentType: 'application/json'
+        });*/
+    },
+
+    postLocationsWasKilled: function (locations) {
+        var anonDevice, filtered;
+
+        filtered = [].filter.call(locations, function(location) {
+            return location.debug === false;
+        });
+
+        if (!filtered || filtered.length === 0) {
+            return;
+        }
+
+        anonDevice = app.getDeviceInfo();
+
+        (function postOneByOne (locations) {
+            var location = locations.pop();
+            if (!location) {
+                return;
+            }
+            var data = {
+                location: {
+                    uuid: new Date().getTime(),
+                    timestamp: location.time,
+                    battery: {},
+                    coords: location,
+                    service_provider: 'SQLITE'
+                },
+                device: anonDevice
+            };
+
+            app.postLocation(data).done(function () {
+                backgroundGeoLocation.deleteLocation(location.locationId,
+                    function () {
+                        console.log('[DEBUG]: location %s deleted', location.locationId);
+                        postOneByOne(locations);
+                    },
+                    function (err) {
+                        if (err) {
+                            console.error('[ERROR]: deleting locationId %s', location.locationId, err);
+                        }
+                        postOneByOne(locations);
+                    }
+                );
+            });
+        })(filtered || []);
+    },
+
+    //navigator.geolocation.getCurrentPosition(app.onSuccessA, app.onError, { maximumAge: 3000, timeout: 15000, enableHighAccuracy: true });
+        
+    fechaHoraSis: function() {
+        var dt = new Date();
+        var fech = dt.getFullYear()+'-'+(dt.getMonth()+1)+'-'+dt.getDate()+' '+dt.getHours()+':'+dt.getMinutes()+':'+dt.getSeconds();
+        return fech;
+    }, 
+
+    enviarUbicacion: function(pos) {
+        var urlP = "http://gpsroinet.avanza.pe/mobile_controler/";
+        var usu = 16;
+        var fec = app.fechaHoraSis();
+        $.ajax({
+            type: 'POST',
+            dataType: 'json', 
+            data: {usu:usu, x:pos.latitude, y:pos.longitude, fec:fec},
+            beforeSend : function (){   },
+            url: urlP+"enviarUbicacion2",
+            success : function(data){ },
+            error: function(data){
+                //nuevaPosicion();
+            }
+        });
     }
 
-    //onError: function(error) {}
-
-    /*receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
-    }*/
 };
 
-var arUbi = new Array();//arUbi.push({x:pos_x, y:pos_y, fecha:1, click:true});
-
-function nuevaPosicion()
-{    
-    //navigator.geolocation.getAccurateCurrentPosition(app.onSuccessA, app.onError, { desiredAccuracy: 50, maxWait: 15000 }); 
-    if($("#id_usu").val() != 0 )
-    {
-        navigator.geolocation.getCurrentPosition(app.onSuccessA, app.onError, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });  
-    }
-}
-
-function fechaHoraSis()
-{
-    var dt = new Date();
-    var fech = dt.getFullYear()+'-'+(dt.getMonth()+1)+'-'+dt.getDate()+' '+dt.getHours()+':'+dt.getMinutes()+':'+dt.getSeconds();
-    return fech;
-}
-
-function enviarUbicacion(x,y)
-{
-    var urlP = "http://gpsroinet.avanza.pe/mobile_controler/";
-    var usu = $("#id_usu").val();
-    var fec = fechaHoraSis();
-    $.ajax({
-        type: 'POST',
-        dataType: 'json', 
-        data: {usu:usu, x:x, y:y, fec:fec},
-        beforeSend : function (){   },
-        url: urlP+"enviarUbicacion",
-        success : function(data) 
-        {
-
-        },
-        error: function(data){
-            nuevaPosicion();
-        }
-    });
-}
-
-function fechaHora()
-{
-    var dt = new Date();
-    var fech = dt.getDate()+'/'+(dt.getMonth()+1)+'/'+dt.getFullYear()+' '+dt.getHours()+':'+dt.getMinutes()+':'+dt.getSeconds();
-    return fech;
-}
+app.initialize();
