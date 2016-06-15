@@ -139,7 +139,7 @@ var app = {
 
         anonDevice = app.getDeviceInfo();
 
-        /*(function postOneByOne (locations) {
+        (function postOneByOne (locations) {
             var location = locations.pop();
             if (!location) {
                 return;
@@ -169,7 +169,7 @@ var app = {
                     }
                 );
             });
-        })(filtered || []);*/
+        })(filtered || []);
     },
 
     fechaHoraSis: function()
