@@ -42,16 +42,16 @@ var app = {
 
     onDeviceReady: function() {
         window.addEventListener('batterystatus', app.onBatteryStatus, false);
-        app.configureBackgroundGeoLocation();
-        backgroundGeoLocation.getLocations(app.postLocationsWasKilled);
-        //backgroundGeoLocation.watchLocationMode(app.onLocationCheck);
+        app.configureBackgroundGeolocation();
+        backgroundGeolocation.getLocations(app.postLocationsWasKilled);
+        //backgroundGeolocation.watchLocationMode(app.onLocationCheck);
     },
 
     /*onLocationCheck: function (enabled) {
         if (app.isTracking && !enabled) {
             var showSettings = window.confirm('No location provider enabled. Should I open location setting?');
             if (showSettings === true) {
-                backgroundGeoLocation.showLocationSettings();
+                backgroundGeolocation.showLocationSettings();
             }
         }
     },*/
@@ -73,12 +73,12 @@ var app = {
         };
     },
 
-    configureBackgroundGeoLocation: function() {
+    configureBackgroundGeolocation: function() {
         try{
             var anonDevice = app.getDeviceInfo();
 
             var yourAjaxCallback = function(response) {
-                backgroundGeoLocation.finish();
+                backgroundGeolocation.finish();
             };
 
             var callbackFn = function(location) {
@@ -97,11 +97,11 @@ var app = {
             };
 
             var failureFn = function(err) {
-                //console.log('BackgroundGeoLocation err', err);
+                //console.log('BackgroundGeolocation err', err);
                alert("Error RS002: Reiniciar el APP, de persistir el problema comunicate con encargado de SISTEMAS.")
             };
 
-           /* backgroundGeoLocation.onStationary(function(location) {
+           /* backgroundGeolocation.onStationary(function(location) {
                 if (!app.stationaryRadius) {
                     app.stationaryRadius = new google.maps.Circle({
                         fillColor: '#cc0000',
@@ -121,8 +121,7 @@ var app = {
                 alert("Error RS001: Verificar GPS y conexión de internet.")
             }
             
-
-            backgroundGeoLocation.configure(callbackFn, failureFn, {
+            backgroundGeolocation.configure(callbackFn, failureFn, {
                 desiredAccuracy: 10,
                 stationaryRadius: 50,
                 distanceFilter: 50,
@@ -134,10 +133,18 @@ var app = {
                 activityType: 'AutomotiveNavigation',
                 debug: true, // <-- enable this hear sounds for background-geolocation life-cycle.
                 stopOnTerminate: false, // <-- enable this to clear background location settings when the app terminates
-                locationService: backgroundGeoLocation.service[ENV.settings.locationService],//backgroundGeoLocation.service.ANDROID_FUSED_LOCATION,
+                locationService: backgroundGeolocation.service[ENV.settings.locationService],//backgroundGeolocation.service.ANDROID_FUSED_LOCATION,
                 fastestInterval: 5000,
                 activitiesInterval: 10000
             });
+
+            /*backgroundGeolocation.configure(callbackFn, failureFn, {
+                desiredAccuracy: 10,
+                stationaryRadius: 20,
+                distanceFilter: 30,
+                debug: true, // <-- enable this hear sounds for background-geolocation life-cycle.
+                stopOnTerminate: false, // <-- enable this to clear background location settings when the app terminates
+            });*/
 
             app.startTracking();
         }catch(er){
@@ -165,13 +172,13 @@ var app = {
     },
 
     startTracking: function () {
-        backgroundGeoLocation.start();
+        backgroundGeolocation.start();
         /*app.isTracking = true;
-        backgroundGeoLocation.isLocationEnabled(app.onLocationCheck);*/
+        backgroundGeolocation.isLocationEnabled(app.onLocationCheck);*/
     },
 
     stopTracking: function () {
-        backgroundGeoLocation.stop();
+        backgroundGeolocation.stop();
         app.isTracking = false;
     },
 
@@ -215,7 +222,7 @@ var app = {
             };
 
             app.postLocation(data).done(function () {
-                backgroundGeoLocation.deleteLocation(location.locationId,
+                backgroundGeolocation.deleteLocation(location.locationId,
                     function () {
                         console.log('[DEBUG]: location %s deleted', location.locationId);
                         postOneByOne(locations);
