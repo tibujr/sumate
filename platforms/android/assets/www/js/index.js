@@ -7,7 +7,7 @@ var ENV = (function() {
         settings: {
             enabled:         localStorage.getItem('enabled')     || 'true',
             aggressive:      localStorage.getItem('aggressive')  || 'false',
-            locationService: localStorage.getItem('locationService')  || 'ANDROID_DISTANCE_FILTER'
+            locationService: localStorage.getItem('locationService')  || 'ANDROID_DISTANCE_FILTER_PROVIDER'
         },
         toggle: function(key) {
             var value    = localStorage.getItem(key),
