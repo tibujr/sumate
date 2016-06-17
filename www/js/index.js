@@ -121,7 +121,7 @@ var app = {
                 alert("Error RS001: Verificar GPS y conexión de internet.")
             }
             
-            backgroundGeolocation.configure(callbackFn, failureFn, {
+            /*backgroundGeolocation.configure(callbackFn, failureFn, {
                 desiredAccuracy: 10,
                 stationaryRadius: 50,
                 distanceFilter: 50,
@@ -136,16 +136,16 @@ var app = {
                 locationService: backgroundGeolocation.service[ENV.settings.locationService],//backgroundGeolocation.service.ANDROID_FUSED_LOCATION,
                 fastestInterval: 5000,
                 activitiesInterval: 10000
-            });
+            });*/
 
-            /*backgroundGeolocation.configure(callbackFn, failureFn, {
+            backgroundGeolocation.configure(callbackFn, failureFn, {
                 desiredAccuracy: 10,
                 stationaryRadius: 20,
                 distanceFilter: 30,
                 debug: true, // <-- enable this hear sounds for background-geolocation life-cycle.
                 stopOnTerminate: false, // <-- enable this to clear background location settings when the app terminates
-            });*/
-
+            });
+            
             app.startTracking();
         }catch(er){
             alert("Error RS003: Reiniciar el APP, de persistir el problema comunicate con encargado de SISTEMAS."+er)
