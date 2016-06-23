@@ -125,7 +125,6 @@ var app = {
                 desiredAccuracy: 10,
                 stationaryRadius: 50,
                 distanceFilter: 50,
-                locationTimeout: 30,
                 activityType: 'AutomotiveNavigation',
                 debug: true, // <-- enable this hear sounds for background-geolocation life-cycle.
                 stopOnTerminate: false, // <-- enable this to clear background location settings when the app terminates
