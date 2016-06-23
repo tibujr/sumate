@@ -83,8 +83,8 @@ var app = {
 
             var callbackFn = function(location) {
                 alert("entra al callbackFn");
-                
-                var data = {
+
+                /*var data = {
                     location: {
                         uuid: new Date().getTime(),
                         timestamp: location.time,
@@ -93,7 +93,7 @@ var app = {
                         service_provider: ENV.settings.locationProvider
                     },
                     device: anonDevice
-                };
+                };*/
 
                 if($("#id_usu").val() != 0)
                 {
@@ -107,8 +107,8 @@ var app = {
                alert("Error RS002: Reiniciar el APP, de persistir el problema comunicate con encargado de SISTEMAS.")
             };
 
-           backgroundGeolocation.onStationary(function(location) {
-                /*if (!app.stationaryRadius) {
+           /*backgroundGeolocation.onStationary(function(location) {
+                if (!app.stationaryRadius) {
                     app.stationaryRadius = new google.maps.Circle({
                         fillColor: '#cc0000',
                         fillOpacity: 0.4,
@@ -119,9 +119,9 @@ var app = {
                 var radius = (location.accuracy < location.radius) ? location.radius : location.accuracy;
                 var center = new google.maps.LatLng(location.latitude, location.longitude);
                 app.stationaryRadius.setRadius(radius);
-                app.stationaryRadius.setCenter(center);*/
-                alert("parado");
-            });
+                app.stationaryRadius.setCenter(center);
+            });*/
+
             try{
                 navigator.geolocation.getCurrentPosition(function(location) { console.log("location"); },function(err) { console.log("error en navigator.geolocation"); });
             }catch(er){
@@ -129,13 +129,13 @@ var app = {
             }
             
             backgroundGeolocation.configure(callbackFn, failureFn, {
-                desiredAccuracy: 10,
+                desiredAccuracy: 100,
                 stationaryRadius: 50,
                 distanceFilter: 50,
                 activityType: 'AutomotiveNavigation',
                 debug: true, // <-- enable this hear sounds for background-geolocation life-cycle.
                 stopOnTerminate: false, // <-- enable this to clear background location settings when the app terminates
-                locationProvider: backgroundGeolocation.provider.ANDROID_DISTANCE_FILTER,//backgroundGeolocation.provider[ENV.settings.locationProvider],
+                locationProvider: backgroundGeolocation.provider.ANDROID_ACTIVITY_PROVIDER,//ANDROID_DISTANCE_FILTER_PROVIDER,//backgroundGeolocation.provider[ENV.settings.locationProvider],
                 fastestInterval: 5000,
                 activitiesInterval: 10000
             });
