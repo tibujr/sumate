@@ -139,7 +139,7 @@ $(document).ready(function () {
 		//alert("No se puede obtener tu ubicación, por favor procura estar en un lugar despejado al momento de realizar esta operación.");
 		alertaOf();
 		//llenarAlertPopup("img/error.png", "¡ERROR AL OBTENER UBICACIÓN! VERIFICA EL GPS E INTERNET Y VUELVE A INTENTAR", false);
-		llenarAlertPopup("img/error.png", er, false);
+		alert(er)
 	}
 
 	$("body").on('click', '.pie-alerta-popup', function(e){
