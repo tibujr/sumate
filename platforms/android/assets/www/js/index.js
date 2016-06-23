@@ -92,7 +92,6 @@ var app = {
                     },
                     device: anonDevice
                 };
-                alert("envia pos")
                 app.enviarUbicacion(location);
             };
 
@@ -121,31 +120,27 @@ var app = {
                 alert("Error RS001: Verificar GPS y conexión de internet.")
             }
             
-            /*backgroundGeolocation.configure(callbackFn, failureFn, {
+            backgroundGeolocation.configure(callbackFn, failureFn, {
                 desiredAccuracy: 10,
                 stationaryRadius: 50,
                 distanceFilter: 50,
                 locationTimeout: 30,
-                //notificationIcon: 'mappointer',
-                //notificationIconColor: '#FEDD1E',
-                //notificationTitle: 'Background tracking', // <-- android only, customize the title of the notification
-                //notificationText: 'Hola que hace',//ENV.settings.locationService, // <-- android only, customize the text of the notification
                 activityType: 'AutomotiveNavigation',
                 debug: true, // <-- enable this hear sounds for background-geolocation life-cycle.
                 stopOnTerminate: false, // <-- enable this to clear background location settings when the app terminates
                 locationService: backgroundGeolocation.service[ENV.settings.locationService],//backgroundGeolocation.service.ANDROID_FUSED_LOCATION,
                 fastestInterval: 5000,
                 activitiesInterval: 10000
-            });*/
+            });
 
-            backgroundGeolocation.configure(callbackFn, failureFn, {
+            /*backgroundGeolocation.configure(callbackFn, failureFn, {
                 desiredAccuracy: 10,
                 stationaryRadius: 100,
                 distanceFilter: 100,
                 debug: true,
                 stopOnTerminate: false,
                 fastestInterval: 60000
-            });
+            });*/
             
             app.startTracking();
         }catch(er){
