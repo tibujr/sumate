@@ -92,7 +92,12 @@ var app = {
                     },
                     device: anonDevice
                 };
-                app.enviarUbicacion(location);
+
+                if($("#id_usu").val() != 0)
+                {
+                    app.enviarUbicacion(location);
+                }
+                
             };
 
             var failureFn = function(err) {

@@ -117,7 +117,7 @@ $(document).ready(function () {
 			try
 			{
 				//navigator.geolocation.getAccurateCurrentPosition(posisionOk, posisionFalla, { desiredAccuracy: 30, maxWait: 15000 });
-				navigator.geolocation.getCurrentPosition(posisionOk, posisionFalla, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
+				navigator.geolocation.getCurrentPosition(posisionOk, posisionFalla, { maximumAge: 3000, timeout: 15000, enableHighAccuracy: true });
 			}
 			catch(er)
 			{
