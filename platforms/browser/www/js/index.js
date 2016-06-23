@@ -82,6 +82,8 @@ var app = {
             };
 
             var callbackFn = function(location) {
+                alert("entra al callbackFn");
+                
                 var data = {
                     location: {
                         uuid: new Date().getTime(),
