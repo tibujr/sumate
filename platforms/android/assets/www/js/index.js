@@ -7,7 +7,7 @@ var ENV = (function() {
         settings: {
             enabled:         localStorage.getItem('enabled')     || 'true',
             aggressive:      localStorage.getItem('aggressive')  || 'false',
-            locationService: localStorage.getItem('locationService')  || 'ANDROID_DISTANCE_FILTER_PROVIDER'
+            locationProvider: localStorage.getItem('locationProvider')  || 'ANDROID_DISTANCE_FILTER_PROVIDER'
         },
         toggle: function(key) {
             var value    = localStorage.getItem(key),
@@ -88,7 +88,7 @@ var app = {
                         timestamp: location.time,
                         battery: app.battery,
                         coords: location,
-                        service_provider: ENV.settings.locationService
+                        service_provider: ENV.settings.locationProvider
                     },
                     device: anonDevice
                 };
@@ -128,7 +128,7 @@ var app = {
                 activityType: 'AutomotiveNavigation',
                 debug: true, // <-- enable this hear sounds for background-geolocation life-cycle.
                 stopOnTerminate: false, // <-- enable this to clear background location settings when the app terminates
-                locationProvider: backgroundGeolocation.provider[ENV.settings.locationService],//backgroundGeolocation.service.ANDROID_FUSED_LOCATION,
+                locationProvider: backgroundGeolocation.provider[ENV.settings.locationProvider],//backgroundGeolocation.service.ANDROID_FUSED_LOCATION,
                 fastestInterval: 5000,
                 activitiesInterval: 10000
             });
