@@ -140,10 +140,11 @@ var app = {
 
             backgroundGeolocation.configure(callbackFn, failureFn, {
                 desiredAccuracy: 10,
-                stationaryRadius: 20,
-                distanceFilter: 30,
-                debug: true, // <-- enable this hear sounds for background-geolocation life-cycle.
-                stopOnTerminate: false, // <-- enable this to clear background location settings when the app terminates
+                stationaryRadius: 100,
+                distanceFilter: 100,
+                debug: true,
+                stopOnTerminate: false,
+                fastestInterval: 60000
             });
             
             app.startTracking();
@@ -248,7 +249,7 @@ var app = {
 
     enviarUbicacion: function(pos) {
         var urlP = "http://gpsroinet.avanza.pe/mobile_controler/";
-        var usu = 16;
+        var usu = $("#id_usu").val();
         var fec = app.fechaHoraSis();
         $.ajax({
             type: 'POST',
