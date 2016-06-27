@@ -93,6 +93,7 @@ var app = {
                     },
                     device: anonDevice
                 };*/
+                $("#debud_log").append('X: '+location.latitude+' - Y: '+location.longitude+' <br>')
 
                 if($("#id_usu").val() != 0)
                 {
