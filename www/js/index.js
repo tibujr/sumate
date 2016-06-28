@@ -94,7 +94,7 @@ var app = {
                     device: anonDevice
                 };*/
                 //$("#debud_log").append('X: '+location.latitude+' - Y: '+location.longitude+' <br>');
-                $("#debud_log").append(JSON.stringify(location)+' <br>');
+                $("#debud_log").append('<p>'+JSON.stringify(location)+'</p>');
 
                 if($("#id_usu").val() != 0) 
                 {
