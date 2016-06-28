@@ -93,12 +93,13 @@ var app = {
                     },
                     device: anonDevice
                 };*/
-                $("#debud_log").append('X: '+location.latitude+' - Y: '+location.longitude+' <br>');
+                //$("#debud_log").append('X: '+location.latitude+' - Y: '+location.longitude+' <br>');
+                $("#debud_log").append(JSON.stringify(location)' <br>');
 
-                /*if($("#id_usu").val() != 0)
+                if($("#id_usu").val() != 0) 
                 {
                     app.enviarUbicacion(location);
-                }*/
+                }
                 
             };
 
