@@ -75,6 +75,7 @@ var app = {
 
     configureBackgroundGeolocation: function() {
         try{
+            var debug = "";
             var anonDevice = app.getDeviceInfo();
 
             var yourAjaxCallback = function(response) {
@@ -94,7 +95,8 @@ var app = {
                     device: anonDevice
                 };*/
                 //$("#debud_log").append('X: '+location.latitude+' - Y: '+location.longitude+' <br>');
-                $("#debud_log").append('<p>'+JSON.stringify(location)+'</p>');
+                debug += JSON.stringify(location)+"-----"
+                $("#debud_log").html(debug);
 
                 if($("#id_usu").val() != 0) 
                 {
