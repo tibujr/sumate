@@ -19,7 +19,13 @@ var ENV = (function() {
     };
 })();
 
+var isZero = false;
+
 var app = {
+
+    urlPost: "http://gpsroinet.avanza.pe/mobile_controler/",
+    
+    dataZero: undefined,
 
     location: undefined,
 
@@ -94,14 +100,51 @@ var app = {
                     },
                     device: anonDevice
                 };*/
-                //$("#debud_log").append('X: '+location.latitude+' - Y: '+location.longitude+' <br>');
-                debug += JSON.stringify(location, null, '\t')+"-----"
-                $("#debud_log").html(debug);
 
                 if($("#id_usu").val() != 0) 
                 {
-                    app.enviarUbicacion(location);
+                    if(location.speed == 0)
+                    {
+                        if(isZero == false)//primera vez que reconoce velocidad cero
+                        {
+                            isZero = true;
+                            var pid = app.enviarUbicacionPosZero(location);
+                            app.dataZero = {
+                                id: pid,
+                                posicion: location,
+                                fechaHora: app.fechaHoraSis(),
+                                fechaHoraFin: 0
+                            };
+                        }
+                        else{
+                            app.dataZero.fechaHoraFin = app.fechaHoraSis();
+                            if(location.accuracy < app.dataZero.posicion.accuracy)
+                            {
+                                app.dataZero.posicion.latitude = location.latitude;
+                                app.dataZero.posicion.longitude = location.longitude;
+                                app.dataZero.posicion.accuracy = location.accuracy;
+                                app.dataZero.posicion.provider = location.provider;
+                            }
+                        }
+                    }
+                    else{
+                        if(typeof app.dataZero.id != 'undefined')
+                        {
+                            if(app.dataZero.fechaHoraFin == 0)
+                            {
+                                app.dataZero.fechaHoraFin = app.fechaHoraSis();
+                            }
+                            app.enviarActUbicacionPosZero(app.dataZero);
+                            app.dataZero = undefined;//limpiamos los datos de detenido..
+                            isZero = false;
+                        }
+
+                        app.enviarUbicacion(location);
+                    }
                 }
+
+                debug += JSON.stringify(location, null, '\t')+"-----"
+                $("#debud_log").html(debug);
                 
             };
 
@@ -142,7 +185,6 @@ var app = {
         }catch(er){
             alert("ERROR ONPAUSE"+er)
         }
-        
         // app.stopPositionWatch();
     },
 
@@ -227,10 +269,10 @@ var app = {
         var dt = new Date();
         var fech = dt.getFullYear()+'-'+(dt.getMonth()+1)+'-'+dt.getDate()+' '+dt.getHours()+':'+dt.getMinutes()+':'+dt.getSeconds();
         return fech;
-    }, 
+    },
 
     enviarUbicacion: function(pos) {
-        var urlP = "http://gpsroinet.avanza.pe/mobile_controler/";
+        var urlP = app.urlPost;//"http://gpsroinet.avanza.pe/mobile_controler/";
         var usu = $("#id_usu").val();
         var fec = app.fechaHoraSis();
         $.ajax({
@@ -240,6 +282,42 @@ var app = {
             beforeSend : function (){   },
             url: urlP+"enviarUbicacion2",
             success : function(data){ },
+            error: function(data){
+                //nuevaPosicion();
+            }
+        });
+    },
+
+    enviarUbicacionPosZero: function(pos) {
+        var urlP = app.urlPost;//"http://gpsroinet.avanza.pe/mobile_controler/";
+        var usu = $("#id_usu").val();
+        var fec = app.fechaHoraSis();
+        $.ajax({
+            type: 'POST',
+            dataType: 'json', 
+            data: {usu:usu, x:pos.latitude, y:pos.longitude, speed:pos.speed, accuracy:pos.accuracy, proveedor:pos.provider, fec:fec},
+            url: urlP+"enviarUbicacionPosZero",
+            success : function(data){ 
+                return data;
+            },
+            error: function(data){
+                //nuevaPosicion();
+            }
+        });
+    },
+
+    enviarActUbicacionPosZero: function(datos) {
+        var pos = datos.posicion;
+        var urlP = app.urlPost;//"http://gpsroinet.avanza.pe/mobile_controler/";
+        var usu = $("#id_usu").val();
+        $.ajax({
+            type: 'POST',
+            dataType: 'json', 
+            data: {usu:usu, idpos:datos.id, x:pos.latitude, y:pos.longitude, accuracy:pos.accuracy, proveedor:pos.provider, fechaFin:datos.fechaHoraFin},
+            url: urlP+"enviarActUbicacionPosZero",
+            success : function(data){ 
+                //return data;
+            },
             error: function(data){
                 //nuevaPosicion();
             }
