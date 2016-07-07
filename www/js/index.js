@@ -316,7 +316,7 @@ var app = {
                 
                 //ret = parseInt(dato);
                 idP = parseInt(dato);
-                return parseInt(dato);
+                return 180;
             },
             error: function(data){
                 alert("error: "+JSON.stringify(data));
