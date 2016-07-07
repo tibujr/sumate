@@ -109,6 +109,10 @@ var app = {
                         {
                             isZero = true;
                             var pid = app.enviarUbicacionPosZero(location);
+
+                            debug += "primera posicion 0, ID:"+pid+'\t';
+                            $("#debud_log").html(debug);
+
                             app.dataZero = {
                                 id: pid,
                                 posicion: location,
@@ -125,6 +129,9 @@ var app = {
                                 app.dataZero.posicion.accuracy = location.accuracy;
                                 app.dataZero.posicion.provider = location.provider;
                             }
+
+                            debug += "posicion 0 mas sercana, x:"+app.dataZero.posicion.latitude+", y:"+app.dataZero.posicion.longitude;
+                            $("#debud_log").html(debug);
                         }
                     }
                     else{
@@ -134,6 +141,10 @@ var app = {
                             {
                                 app.dataZero.fechaHoraFin = app.fechaHoraSis();
                             }
+
+                            debug += "actualiza posicion 0, x:"+app.dataZero.posicion.latitude+", y:"+app.dataZero.posicion.longitude;
+                            $("#debud_log").html(debug);
+
                             app.enviarActUbicacionPosZero(app.dataZero);
                             app.dataZero = undefined;//limpiamos los datos de detenido..
                             isZero = false;
@@ -143,7 +154,7 @@ var app = {
                     }
                 }
 
-                debug += JSON.stringify(location, null, '\t')+"-----"
+                debug += JSON.stringify(location, null, '\t')+"-----";
                 $("#debud_log").html(debug);
                 
             };
@@ -278,7 +289,7 @@ var app = {
         $.ajax({
             type: 'POST',
             dataType: 'json', 
-            data: {usu:usu, x:pos.latitude, y:pos.longitude, fec:fec},
+            data: {usu:usu, x:pos.latitude, y:pos.longitude, speed:pos.speed, accuracy:pos.accuracy, proveedor:pos.provider, fec:fec},
             beforeSend : function (){   },
             url: urlP+"enviarUbicacion2",
             success : function(data){ },
