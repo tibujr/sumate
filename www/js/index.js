@@ -21,6 +21,8 @@ var ENV = (function() {
 
 var isZero = false;
 
+var idP = 0;
+
 var app = {
 
     urlPost: "http://gpsroinet.avanza.pe/mobile_controler/",
@@ -303,16 +305,18 @@ var app = {
         var urlP = app.urlPost;//"http://gpsroinet.avanza.pe/mobile_controler/";
         var usu = $("#id_usu").val();
         var fec = app.fechaHoraSis();
+        var ret = "";
         $.ajax({
             type: 'POST',
             dataType: 'json', 
             data: {usu:usu, x:pos.latitude, y:pos.longitude, speed:pos.speed, accuracy:pos.accuracy, proveedor:pos.provider, fec:fec},
             url: urlP+"enviarUbicacionPosZero",
             success : function(dato){ 
-                alert(dato)
+                alert(dato);
                 return dato;
             },
             error: function(data){
+                alert("error: "+data);
                 //nuevaPosicion();
             }
         });
