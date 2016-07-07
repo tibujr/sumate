@@ -313,11 +313,8 @@ var app = {
             data: {usu:usu, x:pos.latitude, y:pos.longitude, speed:pos.speed, accuracy:pos.accuracy, proveedor:pos.provider, fec:fec},
             url: urlP+"enviarUbicacionPosZero",
             success : function(dato){ 
-                
-                //ret = parseInt(dato);
-                alert(dato.idNP)
+                $("#lugar").val(dato)
                 idP = dato.idNP;
-                alert(idp+1)
                 return dato.idNP;
             },
             error: function(data){
