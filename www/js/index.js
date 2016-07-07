@@ -312,8 +312,6 @@ var app = {
                     fechaHoraFin: 0
                 };
                 isZero = true;
-
-                debug = $("#debud_log").html();
                 debug += "DEBUG1,id:"+app.dataZero.id+" -- x:"+app.dataZero.posicion.latitude+", y:"+app.dataZero.posicion.longitude;
                 $("#debud_log").html(debug);
             },
