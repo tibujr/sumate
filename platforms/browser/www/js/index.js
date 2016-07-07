@@ -110,24 +110,26 @@ var app = {
                         alert("entrando a speed 0, id: "+$("#idP").val());
                         if(isZero == false)//primera vez que reconoce velocidad cero
                         {
-                            isZero = true;
-                            //var pid = app.enviarUbicacionPosZero(location);
-                            app.enviarUbicacionPosZero(location);
+                            app.enviarUbicacionPosZero(location)
 
-                            idP = $("#idP").val();
+                            iniciar(function(){
+                                idP = $("#idP").val();
+
+                                debug += "primera posicion 0, idP:" + idP;
+                                $("#debud_log").html(debug);
+
+                                app.dataZero = {
+                                    id: idP,
+                                    posicion: location,
+                                    fechaHora: app.fechaHoraSis(),
+                                    fechaHoraFin: 0
+                                };
+
+                                isZero = true;
+                        
+                            })
                             
-
-                            debug += "primera posicion 0, idP:" + idP;
-                            $("#debud_log").html(debug);
-
-                            app.dataZero = {
-                                id: idP,
-                                posicion: location,
-                                fechaHora: app.fechaHoraSis(),
-                                fechaHoraFin: 0
-                            };
-                        }
-                        else{
+                        }else{
                             app.dataZero.fechaHoraFin = app.fechaHoraSis();
                             if(location.accuracy < app.dataZero.posicion.accuracy)
                             {
