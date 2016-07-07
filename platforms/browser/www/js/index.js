@@ -114,7 +114,7 @@ var app = {
                             app.enviarUbicacionPosZero(location);
 
                             idP = $("#idP").val();
-                            alert("idP"+idP);
+                            alert("idP: "+idP);
 
                             debug += "primera posicion 0, idP:" + idP;
                             $("#debud_log").html(debug);
@@ -314,17 +314,17 @@ var app = {
             dataType: 'json', 
             data: {usu:usu, x:pos.latitude, y:pos.longitude, speed:pos.speed, accuracy:pos.accuracy, proveedor:pos.provider, fec:fec},
             url: urlP+"enviarUbicacionPosZero",
-            success : function(dato){ 
+            success : function(dato)
+            { 
+                alert("dato que llega : "+dato);
                 $("#idP").val(dato);
+                $("#lugar").val(dato);
+                
             },
             error: function(data){
                 alert("error: "+JSON.stringify(data));
             }
         });
-    },
-
-    asignarID: function(id){
-        idP = id;
     },
 
     enviarActUbicacionPosZero: function(datos) {
