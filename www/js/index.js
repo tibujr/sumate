@@ -113,7 +113,7 @@ var app = {
                             //var pid = app.enviarUbicacionPosZero(location);
                             app.enviarUbicacionPosZero(location);
 
-                            debug += "primera posicion 0, idP:"+idP;
+                            debug += "primera posicion 0, idP:" + $("#idP").val();
                             $("#debud_log").html(debug);
 
                             app.dataZero = {
@@ -314,10 +314,10 @@ var app = {
             data: {usu:usu, x:pos.latitude, y:pos.longitude, speed:pos.speed, accuracy:pos.accuracy, proveedor:pos.provider, fec:fec},
             url: urlP+"enviarUbicacionPosZero",
             success : function(dato){ 
-                /*$("#lugar").val(dato)
-                ret = dato;
-                return false;*/
-                app.asignarID(dato)
+                $("#idP").val(dato)
+                /*ret = dato;
+                return false;
+                app.asignarID(dato)*/
             },
             error: function(data){
                 alert("error: "+JSON.stringify(data));
