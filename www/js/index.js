@@ -316,7 +316,7 @@ var app = {
                 return dato;
             },
             error: function(data){
-                alert("error: "+data);
+                alert("error: "+JSON.stringify(data));
                 //nuevaPosicion();
             }
         });
