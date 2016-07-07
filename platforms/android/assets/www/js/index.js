@@ -23,6 +23,8 @@ var isZero = false;
 
 var idP = 0;
 
+var debug = "";
+
 var app = {
 
     urlPost: "http://gpsroinet.avanza.pe/mobile_controler/",
@@ -83,7 +85,7 @@ var app = {
 
     configureBackgroundGeolocation: function() {
         try{
-            var debug = $("#debud_log").html();
+            
             var anonDevice = app.getDeviceInfo();
 
             var yourAjaxCallback = function(response) {
@@ -140,7 +142,7 @@ var app = {
                             app.dataZero = {};//limpiamos los datos de detenido..
                             isZero = false;
                         }
-                        
+
                         debug += JSON.stringify(location, null, '\t')+"-----";
                         $("#debud_log").html(debug);
                         app.enviarUbicacion(location);
@@ -311,7 +313,7 @@ var app = {
                 };
                 isZero = true;
 
-                var debug = $("#debud_log").html();
+                debug = $("#debud_log").html();
                 debug += "DEBUG1,id:"+app.dataZero.id+" -- x:"+app.dataZero.posicion.latitude+", y:"+app.dataZero.posicion.longitude;
                 $("#debud_log").html(debug);
             },
