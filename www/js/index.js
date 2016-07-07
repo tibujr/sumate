@@ -110,15 +110,14 @@ var app = {
                         if(isZero == false)//primera vez que reconoce velocidad cero
                         {
                             isZero = true;
-                            var pid = app.enviarUbicacionPosZero(location);
-                            alert("id enc:"+pid)
-                            //app.enviarUbicacionPosZero(location);
+                            //var pid = app.enviarUbicacionPosZero(location);
+                            app.enviarUbicacionPosZero(location);
 
-                            debug += "primera posicion 0, ID:"+pid+" idP:"+idP;
+                            debug += "primera posicion 0, idP:"+idP;
                             $("#debud_log").html(debug);
 
                             app.dataZero = {
-                                id: pid,
+                                id: idP,
                                 posicion: location,
                                 fechaHora: app.fechaHoraSis(),
                                 fechaHoraFin: 0
@@ -307,18 +306,19 @@ var app = {
         var urlP = app.urlPost;//"http://gpsroinet.avanza.pe/mobile_controler/";
         var usu = $("#id_usu").val();
         var fec = app.fechaHoraSis();
-        var ret = 0;
+        //var ret = 0;
 
         $.ajax({
             type: 'POST',
             dataType: 'json', 
             data: {usu:usu, x:pos.latitude, y:pos.longitude, speed:pos.speed, accuracy:pos.accuracy, proveedor:pos.provider, fec:fec},
             url: urlP+"enviarUbicacionPosZero",
-            /*success : function(dato){ 
-                $("#lugar").val(dato)
+            success : function(dato){ 
+                /*$("#lugar").val(dato)
                 ret = dato;
-                return false;
-            },*/
+                return false;*/
+                app.asignarID(dato)
+            },
             error: function(data){
                 alert("error: "+JSON.stringify(data));
                 //nuevaPosicion();
@@ -326,6 +326,10 @@ var app = {
         });
 
         //return ret;
+    },
+
+    asignarID: function(id){
+        idP = id;
     },
 
     enviarActUbicacionPosZero: function(datos) {
