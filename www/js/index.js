@@ -317,6 +317,7 @@ var app = {
                 //ret = parseInt(dato);
                 alert(dato.idNP)
                 idP = dato.idNP;
+                alert(idp+1)
                 return dato.idNP;
             },
             error: function(data){
