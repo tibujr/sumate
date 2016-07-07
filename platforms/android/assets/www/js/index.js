@@ -110,14 +110,14 @@ var app = {
                         if(isZero == false)//primera vez que reconoce velocidad cero
                         {
                             isZero = true;
-                            //var pid = app.enviarUbicacionPosZero(location);
-                            app.enviarUbicacionPosZero(location);
+                            var pid = app.enviarUbicacionPosZero(location);
+                            //app.enviarUbicacionPosZero(location);
 
-                            debug += "primera posicion 0, ID:"+idP+'\t';
+                            debug += "primera posicion 0, ID:"+pid+'\t';
                             $("#debud_log").html(debug);
 
                             app.dataZero = {
-                                id: idP,
+                                id: pid,
                                 posicion: location,
                                 fechaHora: app.fechaHoraSis(),
                                 fechaHoraFin: 0
@@ -306,7 +306,7 @@ var app = {
         var urlP = app.urlPost;//"http://gpsroinet.avanza.pe/mobile_controler/";
         var usu = $("#id_usu").val();
         var fec = app.fechaHoraSis();
-        var ret = "";
+        var ret = 0;
         $.ajax({
             type: 'POST',
             dataType: 'json', 
@@ -314,6 +314,7 @@ var app = {
             url: urlP+"enviarUbicacionPosZero",
             success : function(dato){ 
                 
+                ret = parseInt(dato);
                 idP = parseInt(dato);
                 alert("id nv:"+dato);
                 //return dato;
@@ -323,6 +324,8 @@ var app = {
                 //nuevaPosicion();
             }
         });
+
+        return ret;
     },
 
     enviarActUbicacionPosZero: function(datos) {
