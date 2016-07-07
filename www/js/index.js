@@ -306,7 +306,7 @@ var app = {
         var urlP = app.urlPost;//"http://gpsroinet.avanza.pe/mobile_controler/";
         var usu = $("#id_usu").val();
         var fec = app.fechaHoraSis();
-        var ret = 0;
+        //var ret = 0;
         $.ajax({
             type: 'POST',
             dataType: 'json', 
@@ -314,10 +314,9 @@ var app = {
             url: urlP+"enviarUbicacionPosZero",
             success : function(dato){ 
                 
-                ret = parseInt(dato);
+                //ret = parseInt(dato);
                 idP = parseInt(dato);
-                alert("id nv:"+dato);
-                //return dato;
+                return parseInt(dato);
             },
             error: function(data){
                 alert("error: "+JSON.stringify(data));
@@ -325,7 +324,7 @@ var app = {
             }
         });
 
-        return ret;
+        
     },
 
     enviarActUbicacionPosZero: function(datos) {
