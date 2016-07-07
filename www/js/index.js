@@ -83,7 +83,7 @@ var app = {
 
     configureBackgroundGeolocation: function() {
         try{
-            var debug = "";
+            var debug = $("#debud_log").html();
             var anonDevice = app.getDeviceInfo();
 
             var yourAjaxCallback = function(response) {
@@ -107,7 +107,6 @@ var app = {
                 {
                     if(location.speed == 0)
                     {
-                        alert("entrando a speed 0, id: "+$("#idP").val());
                         if(isZero == false)//primera vez que reconoce velocidad cero
                         {
                             app.enviarUbicacionPosZero(location)
@@ -122,7 +121,7 @@ var app = {
                                 app.dataZero.posicion.provider = location.provider;
                             }
 
-                            debug += "posicion 0 mas sercana,id:"+app.dataZero.id+"x:"+app.dataZero.posicion.latitude+", y:"+app.dataZero.posicion.longitude;
+                            debug += "DEBUG 2,id: "+app.dataZero.id+" -- x:"+app.dataZero.posicion.latitude+", y:"+app.dataZero.posicion.longitude;
                             $("#debud_log").html(debug);
                         }
                     }
@@ -134,20 +133,21 @@ var app = {
                                 app.dataZero.fechaHoraFin = app.fechaHoraSis();
                             }
 
-                            debug += "actualiza posicion 0,id:"+app.dataZero.id+" x:"+app.dataZero.posicion.latitude+", y:"+app.dataZero.posicion.longitude;
+                            debug += "DEBUG 3,id: "+app.dataZero.id+" -- x:"+app.dataZero.posicion.latitude+", y:"+app.dataZero.posicion.longitude;
                             $("#debud_log").html(debug);
 
                             app.enviarActUbicacionPosZero(app.dataZero);
-                            app.dataZero = undefined;//limpiamos los datos de detenido..
+                            app.dataZero = {};//limpiamos los datos de detenido..
                             isZero = false;
                         }
-
+                        
+                        debug += JSON.stringify(location, null, '\t')+"-----";
+                        $("#debud_log").html(debug);
                         app.enviarUbicacion(location);
                     }
                 }
 
-                debug += JSON.stringify(location, null, '\t')+"-----";
-                $("#debud_log").html(debug);
+               
                 
             };
 
@@ -302,16 +302,18 @@ var app = {
             url: urlP+"enviarUbicacionPosZero",
             success : function(dato)
             { 
-                /*$("#idP").val(dato);
-                $("#lugar").val(dato);*/
                 idP = dato;//$("#idP").val();
                 app.dataZero = {
-                    id: dato,
+                    id: idP,
                     posicion: pos,
                     fechaHora: app.fechaHoraSis(),
                     fechaHoraFin: 0
                 };
                 isZero = true;
+
+                var debug = $("#debud_log").html();
+                debug += "DEBUG1,id:"+app.dataZero.id+" -- x:"+app.dataZero.posicion.latitude+", y:"+app.dataZero.posicion.longitude;
+                $("#debud_log").html(debug);
             },
             error: function(data){
                 alert("error: "+JSON.stringify(data));
