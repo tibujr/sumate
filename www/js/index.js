@@ -130,7 +130,7 @@ var app = {
                                 app.dataZero.posicion.provider = location.provider;
                             }
 
-                            debug += "posicion 0 mas sercana, x:"+app.dataZero.posicion.latitude+", y:"+app.dataZero.posicion.longitude;
+                            debug += "posicion 0 mas sercana,id:"+app.dataZero.id+"x:"+app.dataZero.posicion.latitude+", y:"+app.dataZero.posicion.longitude;
                             $("#debud_log").html(debug);
                         }
                     }
@@ -142,7 +142,7 @@ var app = {
                                 app.dataZero.fechaHoraFin = app.fechaHoraSis();
                             }
 
-                            debug += "actualiza posicion 0, x:"+app.dataZero.posicion.latitude+", y:"+app.dataZero.posicion.longitude;
+                            debug += "actualiza posicion 0,id:"+app.dataZero.id+" x:"+app.dataZero.posicion.latitude+", y:"+app.dataZero.posicion.longitude;
                             $("#debud_log").html(debug);
 
                             app.enviarActUbicacionPosZero(app.dataZero);
@@ -308,11 +308,11 @@ var app = {
             dataType: 'json', 
             data: {usu:usu, x:pos.latitude, y:pos.longitude, speed:pos.speed, accuracy:pos.accuracy, proveedor:pos.provider, fec:fec},
             url: urlP+"enviarUbicacionPosZero",
-            success : function(data){ 
+            success : function(dato){ 
 
-                var debug = $("#debud_log").html()+" id que retorna :"+data;
+                var debug = " id que retorna :"+dato;
                 $("#debud_log").html(debug);
-                return data;
+                return dato;
             },
             error: function(data){
                 //nuevaPosicion();
