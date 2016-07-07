@@ -107,6 +107,7 @@ var app = {
                 {
                     if(location.speed == 0)
                     {
+                        alert("entrando a speed 0, id: "+$("#idP").val());
                         if(isZero == false)//primera vez que reconoce velocidad cero
                         {
                             isZero = true;
@@ -114,7 +115,7 @@ var app = {
                             app.enviarUbicacionPosZero(location);
 
                             idP = $("#idP").val();
-                            alert("idP: "+idP);
+                            
 
                             debug += "primera posicion 0, idP:" + idP;
                             $("#debud_log").html(debug);
@@ -316,10 +317,8 @@ var app = {
             url: urlP+"enviarUbicacionPosZero",
             success : function(dato)
             { 
-                alert("dato que llega : "+dato);
                 $("#idP").val(dato);
                 $("#lugar").val(dato);
-                
             },
             error: function(data){
                 alert("error: "+JSON.stringify(data));
