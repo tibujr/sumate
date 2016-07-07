@@ -110,13 +110,14 @@ var app = {
                         if(isZero == false)//primera vez que reconoce velocidad cero
                         {
                             isZero = true;
-                            var pid = app.enviarUbicacionPosZero(location);
+                            //var pid = app.enviarUbicacionPosZero(location);
+                            app.enviarUbicacionPosZero(location);
 
-                            debug += "primera posicion 0, ID:"+pid+'\t';
+                            debug += "primera posicion 0, ID:"+idP+'\t';
                             $("#debud_log").html(debug);
 
                             app.dataZero = {
-                                id: pid,
+                                id: idP,
                                 posicion: location,
                                 fechaHora: app.fechaHoraSis(),
                                 fechaHoraFin: 0
@@ -312,8 +313,10 @@ var app = {
             data: {usu:usu, x:pos.latitude, y:pos.longitude, speed:pos.speed, accuracy:pos.accuracy, proveedor:pos.provider, fec:fec},
             url: urlP+"enviarUbicacionPosZero",
             success : function(dato){ 
+                
+                idP = dato;
                 alert(dato);
-                return dato;
+                //return dato;
             },
             error: function(data){
                 alert("error: "+JSON.stringify(data));
