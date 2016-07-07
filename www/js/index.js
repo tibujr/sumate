@@ -128,6 +128,8 @@ var app = {
                                 isZero = true;
                         
                             }
+
+                            iniciar();
                             
                         }else{
                             app.dataZero.fechaHoraFin = app.fechaHoraSis();
