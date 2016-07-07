@@ -111,25 +111,7 @@ var app = {
                         if(isZero == false)//primera vez que reconoce velocidad cero
                         {
                             app.enviarUbicacionPosZero(location)
-
-                            function iniciar(){
-                                idP = $("#idP").val();
-
-                                debug += "primera posicion 0, idP:" + idP;
-                                $("#debud_log").html(debug);
-
-                                app.dataZero = {
-                                    id: idP,
-                                    posicion: location,
-                                    fechaHora: app.fechaHoraSis(),
-                                    fechaHoraFin: 0
-                                };
-
-                                isZero = true;
-                        
-                            }
-
-                            iniciar();
+                            app.iniciarPosZero(debug);
                             
                         }else{
                             app.dataZero.fechaHoraFin = app.fechaHoraSis();
@@ -198,6 +180,23 @@ var app = {
         }catch(er){
             alert("Error RS003: Reiniciar el APP, de persistir el problema comunicate con encargado de SISTEMAS."+er)
         }
+    },
+
+    iniciarPosZero: function(debug){
+        idP = $("#idP").val();
+        
+        debug += "primera posicion 0, idP:" + idP;
+        $("#debud_log").html(debug);
+
+        app.dataZero = {
+            id: idP,
+            posicion: location,
+            fechaHora: app.fechaHoraSis(),
+            fechaHoraFin: 0
+        };
+
+        isZero = true;
+
     },
 
     onPause: function() {
