@@ -111,6 +111,7 @@ var app = {
                         {
                             isZero = true;
                             var pid = app.enviarUbicacionPosZero(location);
+                            alert("id enc:"+pid)
                             //app.enviarUbicacionPosZero(location);
 
                             debug += "primera posicion 0, ID:"+pid+" idP:"+idP;
@@ -307,24 +308,24 @@ var app = {
         var usu = $("#id_usu").val();
         var fec = app.fechaHoraSis();
         var ret = 0;
-        
+
         $.ajax({
             type: 'POST',
             dataType: 'json', 
             data: {usu:usu, x:pos.latitude, y:pos.longitude, speed:pos.speed, accuracy:pos.accuracy, proveedor:pos.provider, fec:fec},
             url: urlP+"enviarUbicacionPosZero",
-            success : function(dato){ 
-                $("#lugar").val(dato.idNP)
-                ret = dato.idNP;
+            /*success : function(dato){ 
+                $("#lugar").val(dato)
+                ret = dato;
                 return false;
-            },
+            },*/
             error: function(data){
                 alert("error: "+JSON.stringify(data));
                 //nuevaPosicion();
             }
         });
 
-        return ret;
+        //return ret;
     },
 
     enviarActUbicacionPosZero: function(datos) {
