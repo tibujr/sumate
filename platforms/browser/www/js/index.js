@@ -113,7 +113,7 @@ var app = {
                             var pid = app.enviarUbicacionPosZero(location);
                             //app.enviarUbicacionPosZero(location);
 
-                            debug += "primera posicion 0, ID:"+pid+'\t';
+                            debug += "primera posicion 0, ID:"+pid+" idP:"+idP;
                             $("#debud_log").html(debug);
 
                             app.dataZero = {
@@ -315,7 +315,8 @@ var app = {
             success : function(dato){ 
                 
                 //ret = parseInt(dato);
-                idP = parseInt(dato);
+                alert(dato)
+                idP = dato;
                 return 180;
             },
             error: function(data){
