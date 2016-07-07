@@ -309,6 +309,9 @@ var app = {
             data: {usu:usu, x:pos.latitude, y:pos.longitude, speed:pos.speed, accuracy:pos.accuracy, proveedor:pos.provider, fec:fec},
             url: urlP+"enviarUbicacionPosZero",
             success : function(data){ 
+
+                var debug = $("#debud_log").html()+" id que retorna :"+data;
+                $("#debud_log").html(debug);
                 return data;
             },
             error: function(data){
