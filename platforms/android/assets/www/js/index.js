@@ -23,6 +23,8 @@ var isZero = false;
 
 var app = {
 
+    conc: "",
+
     urlPost: "http://gpsroinet.avanza.pe/mobile_controler/",
     
     dataZero: undefined,
@@ -81,7 +83,7 @@ var app = {
 
     configureBackgroundGeolocation: function() {
         try{
-            var debug = "";
+            var debug = app.conc + "";
             var anonDevice = app.getDeviceInfo();
 
             var yourAjaxCallback = function(response) {
@@ -310,8 +312,8 @@ var app = {
             url: urlP+"enviarUbicacionPosZero",
             success : function(dato){ 
 
-                var debug = " id que retorna :"+dato;
-                $("#debud_log").html(debug);
+                app.conc = " id que retorna :"+dato;
+                $("#debud_log").html(app.conc);
                 return dato;
             },
             error: function(data){
