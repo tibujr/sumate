@@ -306,16 +306,17 @@ var app = {
         var urlP = app.urlPost;//"http://gpsroinet.avanza.pe/mobile_controler/";
         var usu = $("#id_usu").val();
         var fec = app.fechaHoraSis();
-        //var ret = 0;
+        var ret = 0;
+        
         $.ajax({
             type: 'POST',
             dataType: 'json', 
             data: {usu:usu, x:pos.latitude, y:pos.longitude, speed:pos.speed, accuracy:pos.accuracy, proveedor:pos.provider, fec:fec},
             url: urlP+"enviarUbicacionPosZero",
             success : function(dato){ 
-                $("#lugar").val(dato)
-                idP = dato.idNP;
-                return dato.idNP;
+                $("#lugar").val(dato.idNP)
+                ret = dato.idNP;
+                return false;
             },
             error: function(data){
                 alert("error: "+JSON.stringify(data));
@@ -323,7 +324,7 @@ var app = {
             }
         });
 
-        
+        return ret;
     },
 
     enviarActUbicacionPosZero: function(datos) {
