@@ -315,9 +315,9 @@ var app = {
             success : function(dato){ 
                 
                 //ret = parseInt(dato);
-                alert(dato)
-                idP = dato;
-                return 180;
+                alert(dato.idNP)
+                idP = dato.idNP;
+                return dato.idNP;
             },
             error: function(data){
                 alert("error: "+JSON.stringify(data));
