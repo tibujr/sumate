@@ -314,8 +314,8 @@ var app = {
             url: urlP+"enviarUbicacionPosZero",
             success : function(dato){ 
                 
-                idP = dato;
-                alert(dato);
+                idP = parseInt(dato);
+                alert("id nv:"+dato);
                 //return dato;
             },
             error: function(data){
