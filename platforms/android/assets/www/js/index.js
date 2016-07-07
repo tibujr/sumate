@@ -107,45 +107,51 @@ var app = {
 
                 if($("#id_usu").val() != 0) 
                 {
-                    if(location.speed == 0)
-                    {
-                        if(isZero == false)//primera vez que reconoce velocidad cero
-                        {
-                            app.enviarUbicacionPosZero(location)
+                    try{
 
-                        }else{
-                            app.dataZero.fechaHoraFin = app.fechaHoraSis();
-                            if(location.accuracy < app.dataZero.posicion.accuracy)
-                            {
-                                app.dataZero.posicion.latitude = location.latitude;
-                                app.dataZero.posicion.longitude = location.longitude;
-                                app.dataZero.posicion.accuracy = location.accuracy;
-                                app.dataZero.posicion.provider = location.provider;
-                            }
 
-                            debug += "DEBUG 2,id: "+app.dataZero.id+" -- x:"+app.dataZero.posicion.latitude+", y:"+app.dataZero.posicion.longitude;
-                            $("#debud_log").html(debug);
-                        }
-                    }
-                    else{
-                        if(typeof app.dataZero.id != 'undefined')
+                        if(location.speed == 0)
                         {
-                            if(app.dataZero.fechaHoraFin == 0)
+                            if(isZero == false)//primera vez que reconoce velocidad cero
                             {
+                                app.enviarUbicacionPosZero(location)
+
+                            }else{
                                 app.dataZero.fechaHoraFin = app.fechaHoraSis();
+                                if(location.accuracy < app.dataZero.posicion.accuracy)
+                                {
+                                    app.dataZero.posicion.latitude = location.latitude;
+                                    app.dataZero.posicion.longitude = location.longitude;
+                                    app.dataZero.posicion.accuracy = location.accuracy;
+                                    app.dataZero.posicion.provider = location.provider;
+                                }
+
+                                debug += "DEBUG 2,id: "+app.dataZero.id+" -- x:"+app.dataZero.posicion.latitude+", y:"+app.dataZero.posicion.longitude+", Accu:"+app.dataZero.posicion.accuracy+", Prov:"+app.dataZero.posicion.provider;
+                                $("#debud_log").html(debug);
+                            }
+                        }
+                        else{
+                            if(typeof app.dataZero.id != 'undefined')
+                            {
+                                if(app.dataZero.fechaHoraFin == 0)
+                                {
+                                    app.dataZero.fechaHoraFin = app.fechaHoraSis();
+                                }
+
+                                debug += "DEBUG 3,id: "+app.dataZero.id+" -- x:"+app.dataZero.posicion.latitude+", y:"+app.dataZero.posicion.longitude+", Accu:"+app.dataZero.posicion.accuracy+", Prov:"+app.dataZero.posicion.provider;
+                                $("#debud_log").html(debug);
+
+                                app.enviarActUbicacionPosZero(app.dataZero);
+                                app.dataZero = {};//limpiamos los datos de detenido..
+                                isZero = false;
                             }
 
-                            debug += "DEBUG 3,id: "+app.dataZero.id+" -- x:"+app.dataZero.posicion.latitude+", y:"+app.dataZero.posicion.longitude;
+                            debug += JSON.stringify("DEBUG 4, "+location, null, '\t')+"-----";
                             $("#debud_log").html(debug);
-
-                            app.enviarActUbicacionPosZero(app.dataZero);
-                            app.dataZero = {};//limpiamos los datos de detenido..
-                            isZero = false;
+                            app.enviarUbicacion(location);
                         }
-
-                        debug += JSON.stringify(location, null, '\t')+"-----";
-                        $("#debud_log").html(debug);
-                        app.enviarUbicacion(location);
+                    }catch(er){
+                        alert("ERROR AL ENVIAR POS: "+ er)
                     }
                 }
 
@@ -312,7 +318,7 @@ var app = {
                     fechaHoraFin: 0
                 };
                 isZero = true;
-                debug += "DEBUG1,id:"+app.dataZero.id+" -- x:"+app.dataZero.posicion.latitude+", y:"+app.dataZero.posicion.longitude;
+                debug += "DEBUG1,id:"+app.dataZero.id+" -- x:"+app.dataZero.posicion.latitude+", y:"+app.dataZero.posicion.longitude+", Accu:"+app.dataZero.posicion.accuracy+", Prov:"+app.dataZero.posicion.provider;
                 $("#debud_log").html(debug);
             },
             error: function(data){
