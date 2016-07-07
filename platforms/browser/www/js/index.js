@@ -112,7 +112,7 @@ var app = {
                         {
                             app.enviarUbicacionPosZero(location)
 
-                            iniciar(function(){
+                            function iniciar(){
                                 idP = $("#idP").val();
 
                                 debug += "primera posicion 0, idP:" + idP;
@@ -127,7 +127,7 @@ var app = {
 
                                 isZero = true;
                         
-                            })
+                            }
                             
                         }else{
                             app.dataZero.fechaHoraFin = app.fechaHoraSis();
