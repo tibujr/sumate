@@ -99,7 +99,6 @@ var app = {
             };
 
             var callbackFn = function(location) {
-
                 /*var data = {
                     location: {
                         uuid: new Date().getTime(),
@@ -114,7 +113,7 @@ var app = {
                 if($("#id_usu").val() != 0) 
                 {
                     try{
-                        if(location.speed == 0)
+                        if(location.speed <= 0.3)
                         {
                             contZero += 1;
                             if(isZero == false)//primera vez que reconoce velocidad cero
