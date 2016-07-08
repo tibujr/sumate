@@ -25,11 +25,16 @@ var idP = 0;
 
 var debug = "";
 
+var dataZero = {
+                id: 0,
+                posicion: {},
+                fechaHora: 0,
+                fechaHoraFin: 0
+            };
+
 var app = {
 
     urlPost: "http://gpsroinet.avanza.pe/mobile_controler/",
-    
-    dataZero: undefined,
 
     location: undefined,
 
@@ -87,6 +92,7 @@ var app = {
         try{
             
             var anonDevice = app.getDeviceInfo();
+            var contZero = 0; //para contar cuantas veces seguida su posicion es 0
 
             var yourAjaxCallback = function(response) {
                 backgroundGeolocation.finish();
@@ -108,43 +114,46 @@ var app = {
                 if($("#id_usu").val() != 0) 
                 {
                     try{
-
-
                         if(location.speed == 0)
                         {
+                            contZero += 1;
                             if(isZero == false)//primera vez que reconoce velocidad cero
                             {
                                 app.enviarUbicacionPosZero(location)
 
                             }else{
-                                app.dataZero.fechaHoraFin = app.fechaHoraSis();
-                                if(location.accuracy < app.dataZero.posicion.accuracy)
+                                dataZero.fechaHoraFin = app.fechaHoraSis();
+                                if(location.accuracy < dataZero.posicion.accuracy)
                                 {
-                                    app.dataZero.posicion.latitude = location.latitude;
-                                    app.dataZero.posicion.longitude = location.longitude;
-                                    app.dataZero.posicion.accuracy = location.accuracy;
-                                    app.dataZero.posicion.provider = location.provider;
+                                    dataZero.posicion.latitude = location.latitude;
+                                    dataZero.posicion.longitude = location.longitude;
+                                    dataZero.posicion.accuracy = location.accuracy;
+                                    dataZero.posicion.provider = location.provider;
                                 }
 
-                                debug += "DEBUG 2,id: "+app.dataZero.id+" -- x:"+app.dataZero.posicion.latitude+", y:"+app.dataZero.posicion.longitude+", Accu:"+app.dataZero.posicion.accuracy+", Prov:"+app.dataZero.posicion.provider;
+                                debug += "DEBUG 2,id: "+dataZero.id+" -- x:"+dataZero.posicion.latitude+", y:"+dataZero.posicion.longitude+", Accu:"+dataZero.posicion.accuracy+", Prov:"+dataZero.posicion.provider;
                                 $("#debud_log").html(debug);
                             }
-                        }
-                        else{
-                            if(typeof app.dataZero.id != 'undefined')
+                        }else{
+                            if(contZero >= 2)
                             {
-                                if(app.dataZero.fechaHoraFin == 0)
+                                if(dataZero.id != 0)
                                 {
-                                    app.dataZero.fechaHoraFin = app.fechaHoraSis();
+                                    if(dataZero.fechaHoraFin == 0)
+                                    {
+                                        dataZero.fechaHoraFin = app.fechaHoraSis();
+                                    }
+
+                                    debug += "DEBUG 3,id: "+dataZero.id+" -- x:"+dataZero.posicion.latitude+", y:"+dataZero.posicion.longitude+", Accu:"+dataZero.posicion.accuracy+", Prov:"+dataZero.posicion.provider;
+                                    $("#debud_log").html(debug);
+
+                                    app.enviarActUbicacionPosZero(dataZero);
                                 }
-
-                                debug += "DEBUG 3,id: "+app.dataZero.id+" -- x:"+app.dataZero.posicion.latitude+", y:"+app.dataZero.posicion.longitude+", Accu:"+app.dataZero.posicion.accuracy+", Prov:"+app.dataZero.posicion.provider;
-                                $("#debud_log").html(debug);
-
-                                app.enviarActUbicacionPosZero(app.dataZero);
-                                app.dataZero = {};//limpiamos los datos de detenido..
-                                isZero = false;
                             }
+                            contZero = 0;//volvemos a 0 el contador de posiciones 0
+                            app.limpiarDataZero();
+                            isZero = false;
+                            
 
                             debug += JSON.stringify("DEBUG 4, "+location, null, '\t')+"-----";
                             $("#debud_log").html(debug);
@@ -187,6 +196,15 @@ var app = {
         }catch(er){
             alert("Error RS003: Reiniciar el APP, de persistir el problema comunicate con encargado de SISTEMAS."+er)
         }
+    },
+
+    limpiarDataZero: function(){
+        dataZero = {
+                id: 0,
+                posicion: {},
+                fechaHora: 0,
+                fechaHoraFin: 0
+            };
     },
 
     onPause: function() {
@@ -310,15 +328,12 @@ var app = {
             url: urlP+"enviarUbicacionPosZero",
             success : function(dato)
             { 
-                idP = dato;//$("#idP").val();
-                app.dataZero = {
-                    id: idP,
-                    posicion: pos,
-                    fechaHora: app.fechaHoraSis(),
-                    fechaHoraFin: 0
-                };
+                dataZero.id = dato;
+                dataZero.posicion = pos;
+                dataZero.fechaHora = app.fechaHoraSis();
                 isZero = true;
-                debug += "DEBUG1,id:"+app.dataZero.id+" -- x:"+app.dataZero.posicion.latitude+", y:"+app.dataZero.posicion.longitude+", Accu:"+app.dataZero.posicion.accuracy+", Prov:"+app.dataZero.posicion.provider;
+
+                debug += "DEBUG1,id:"+dataZero.id+" -- x:"+dataZero.posicion.latitude+", y:"+dataZero.posicion.longitude+", Accu:"+dataZero.posicion.accuracy+", Prov:"+dataZero.posicion.provider;
                 $("#debud_log").html(debug);
             },
             error: function(data){
@@ -338,8 +353,10 @@ var app = {
             url: urlP+"enviarActUbicacionPosZero",
             success : function(data){ 
                 //return data;
+                alert("exito update")
             },
             error: function(data){
+                alert("error update")
                 //nuevaPosicion();
             }
         });
