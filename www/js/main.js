@@ -53,21 +53,12 @@ $(document).ready(function () {
 					localStorage.setItem('mail_gps', usu);
 					localStorage.setItem('clave_gps', pas);
 					$("#id_usu").val(data.id);
-					//$("#empresa").val(data.empresa);
-
 					if(data.logo){ $("#cab_logo").html("<img src='"+data.logo+"'>");}
-
-					//var ama = data.apellido_materno;
-					//if(ama == null){ama = ""};
-					var nomUsu = data.nombre+' '+data.apellido_paterno;//+' '+ama;
-					//$("#usuario").val(nomUsu);
+					var nomUsu = data.nombre+' '+data.apellido_paterno;
 					$("#usu-nom-cab").html(nomUsu.toUpperCase());
-					//setInterval('nuevaPosicion()',120000);
 					$.mobile.changePage("#principal", {transition:"slide"});
-					//getTipoMarca();//crear radios button
 				}else{
 					alert("error: verificar datos");
-					//llenarAlertPopup("img/error.png", "¡USUARIO O CONTRASEÑA INCORRECTO!", false);
 				}
 			},
 			error: function(data){
@@ -79,38 +70,12 @@ $(document).ready(function () {
 		});
 	}
 
-	/*function getTipoMarca()
-	{
-		$.ajax({
-			type: 'POST',
-			dataType: 'json', 
-			data: {},
-			url: urlP+"getTipoMarca",
-			success : function(data) 
-			{
-				/*--$("#cont-radio").html("");
-				for (var i = 0; i < data.length; i++) {
-					var appe = "<div class='ui-radio'>"+
-								"<input type='radio' name='marca' id='marca-"+data[i].id+"' value='"+data[i].id+"'>"+
-								"<label for='marca-"+data[i].id+"' data-corners='true' data-shadow='false' data-iconshadow='true' data-wrapperels='span' data-icon='radio-off' data-theme='c' data-mini='true' class='ui-btn ui-btn-up-c ui-mini ui-btn-icon-left ui-radio-off ui-corner-top'>"+
-								"<span class='ui-btn-inner ui-corner-top'>"+
-								"<span class='ui-btn-text'>"+data[i].descripcion+"</span>"+
-								"<span class='ui-icon ui-icon-radio-off ui-icon-shadow'>&nbsp;</span>"+
-								"</span></label></div>";
-					$("#cont-radio").append(appe);
-				}--
-			},
-			error: function(data){
-				console.log(data)
-		    }
-		});
-	}*/
-
 	$("body").on('click', '#marcar-asistencia', function(e){
 		fechaHora = fechaHoraAct();
-		if( $('input:radio[name=marca]:checked').val() == null) {
+		/*if( $('input:radio[name=marca]:checked').val() == null) {
 			alert("Es necesario seleccionar el tipo");
-		}else if ( rutaImagenG == "") {
+		}else if ( rutaImagenG == "") {*/
+		if ( rutaImagenG == "") {
 			alert("Es necesario tomar la foto para marcar la asistencia.");
 		}else{
 			alerta();
@@ -267,7 +232,7 @@ $(document).ready(function () {
 			datos.append("y", y);
 			datos.append("fec", fechaHora);
 			datos.append("lugar", $("#lugar").val());
-			datos.append("tipo", $('input:radio[name=marca]:checked').val());
+			//datos.append("tipo", $('input:radio[name=marca]:checked').val());
 
 			$.ajax({
 				type: 'POST',
@@ -283,17 +248,10 @@ $(document).ready(function () {
 					alertaOf();		
 
 					var objExtra = new Array();
-					/*objExtra.push({ico:null, campo:"Fecha", valor:"26 Febrero 2016"});
-					objExtra.push({ico:null, campo:"Hora", valor:"9:45 pm"});*/
 					llenarAlertPopup("img/check.png", "¡REGISTRADO CORRECTAMENTE!", false);
-
-					//$("#alertaPopup").popup("open");			
-					//alert("Registrado correctamente");
-					//alert(data);
 				},
 				error: function(data){
 					alertaOf();
-					//alert(data)
 					llenarAlertPopup("img/error.png", "¡ERROR! POR FAVOR VUELVE A INTENTAR", false);
 			    }
 			});
@@ -339,8 +297,8 @@ $(document).ready(function () {
 		nombreImagen = "";
 		fechaHora = "";
 
-		$("input:radio[name=marca]").removeAttr("checked");
-		$("input:radio[name=marca]").checkboxradio("refresh");
+		//$("input:radio[name=marca]").removeAttr("checked");
+		//$("input:radio[name=marca]").checkboxradio("refresh");
 	}
 
 	function alerta()
