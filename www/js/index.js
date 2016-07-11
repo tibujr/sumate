@@ -59,17 +59,7 @@ var app = {
         window.addEventListener('batterystatus', app.onBatteryStatus, false);
         app.configureBackgroundGeolocation();
         backgroundGeolocation.getLocations(app.postLocationsWasKilled);
-        //backgroundGeolocation.watchLocationMode(app.onLocationCheck);
     },
-
-    /*onLocationCheck: function (enabled) {
-        if (app.isTracking && !enabled) {
-            var showSettings = window.confirm('No location provider enabled. Should I open location setting?');
-            if (showSettings === true) {
-                backgroundGeolocation.showLocationSettings();
-            }
-        }
-    },*/
 
     onBatteryStatus: function(ev) {
         app.battery = {
@@ -113,7 +103,7 @@ var app = {
                 if($("#id_usu").val() != 0) 
                 {
                     try{
-                        if(location.speed <= 0.3)
+                        if(location.speed <= 0.5)
                         {
                             contZero += 1;
                             if(isZero == false)//primera vez que reconoce velocidad cero
@@ -130,8 +120,8 @@ var app = {
                                     dataZero.posicion.provider = location.provider;
                                 }
 
-                                debug += "DEBUG 2,id: "+dataZero.id+" -- x:"+dataZero.posicion.latitude+", y:"+dataZero.posicion.longitude+", Accu:"+dataZero.posicion.accuracy+", Prov:"+dataZero.posicion.provider;
-                                $("#debud_log").html(debug);
+                                //debug += "DEBUG 2,id: "+dataZero.id+" -- x:"+dataZero.posicion.latitude+", y:"+dataZero.posicion.longitude+", Accu:"+dataZero.posicion.accuracy+", Prov:"+dataZero.posicion.provider;
+                                //$("#debud_log").html(debug);
                             }
                         }else{
                             if(contZero >= 2)
@@ -142,10 +132,6 @@ var app = {
                                     {
                                         dataZero.fechaHoraFin = app.fechaHoraSis();
                                     }
-
-                                    debug += "DEBUG 3,id: "+dataZero.id+" -- x:"+dataZero.posicion.latitude+", y:"+dataZero.posicion.longitude+", Accu:"+dataZero.posicion.accuracy+", Prov:"+dataZero.posicion.provider;
-                                    $("#debud_log").html(debug);
-
                                     app.enviarActUbicacionPosZero(dataZero);
                                 }
                             }
@@ -153,18 +139,12 @@ var app = {
                             app.limpiarDataZero();
                             isZero = false;
                             
-
-                            debug += JSON.stringify("DEBUG 4, "+location, null, '\t')+"-----";
-                            $("#debud_log").html(debug);
                             app.enviarUbicacion(location);
                         }
                     }catch(er){
                         alert("ERROR AL ENVIAR POS: "+ er)
                     }
                 }
-
-               
-                
             };
 
             var failureFn = function(err) {
@@ -192,7 +172,8 @@ var app = {
             });
             
             app.startTracking();
-        }catch(er){
+        }
+        catch(er){
             alert("Error RS003: Reiniciar el APP, de persistir el problema comunicate con encargado de SISTEMAS."+er)
         }
     },
@@ -208,12 +189,6 @@ var app = {
 
     onPause: function() {
         console.log('- onPause');
-        try{
-            //navigator.geolocation.watchPosition(app.enviarUbicacion, app.onError, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true } );
-        }catch(er){
-            alert("ERROR ONPAUSE"+er)
-        }
-        // app.stopPositionWatch();
     },
 
     onError: function(){
@@ -226,8 +201,6 @@ var app = {
 
     startTracking: function () {
         backgroundGeolocation.start();
-        /*app.isTracking = true;
-        backgroundGeolocation.isLocationEnabled(app.onLocationCheck);*/
     },
 
     stopTracking: function () {
@@ -236,13 +209,7 @@ var app = {
     },
 
     postLocation: function (data) {
-        /*return $.ajax({
-            url: app.postUrl,
-            type: 'POST',
-            data: JSON.stringify(data),
-            // dataType: 'html',
-            contentType: 'application/json'
-        });*/
+
     },
 
     postLocationsWasKilled: function (locations) {
@@ -306,24 +273,24 @@ var app = {
         $.ajax({
             type: 'POST',
             dataType: 'json', 
-            data: {usu:usu, x:pos.latitude, y:pos.longitude, speed:pos.speed, accuracy:pos.accuracy, proveedor:pos.provider, fec:fec},
+            data: {usu:usu, x:pos.latitude, y:pos.longitude, speed:pos.speed, accuracy:pos.accuracy, proveedor:pos.provider, fec:fec, nbat: app.battery.level},
             beforeSend : function (){   },
             url: urlP+"enviarUbicacion2",
             success : function(data){ },
             error: function(data){
-                //nuevaPosicion();
+                //alert("Error posicion log");
             }
         });
     },
 
     enviarUbicacionPosZero: function(pos) {
-        var urlP = app.urlPost;//"http://gpsroinet.avanza.pe/mobile_controler/";
+        var urlP = app.urlPost;
         var usu = $("#id_usu").val();
         var fec = app.fechaHoraSis();
         $.ajax({
             type: 'POST',
             dataType: 'json', 
-            data: {usu:usu, x:pos.latitude, y:pos.longitude, speed:pos.speed, accuracy:pos.accuracy, proveedor:pos.provider, fec:fec},
+            data: {usu:usu, x:pos.latitude, y:pos.longitude, speed:pos.speed, accuracy:pos.accuracy, proveedor:pos.provider, fec:fec, nbat:app.battery.level},
             url: urlP+"enviarUbicacionPosZero",
             success : function(dato)
             { 
@@ -331,32 +298,25 @@ var app = {
                 dataZero.posicion = pos;
                 dataZero.fechaHora = app.fechaHoraSis();
                 isZero = true;
-
-                debug += "DEBUG1,id:"+dataZero.id+" -- x:"+dataZero.posicion.latitude+", y:"+dataZero.posicion.longitude+", Accu:"+dataZero.posicion.accuracy+", Prov:"+dataZero.posicion.provider;
-                $("#debud_log").html(debug);
             },
             error: function(data){
-                alert("error: "+JSON.stringify(data));
+                //alert("Error posicion log cero");
             }
         });
     },
 
     enviarActUbicacionPosZero: function(datos) {
         var pos = datos.posicion;
-        var urlP = app.urlPost;//"http://gpsroinet.avanza.pe/mobile_controler/";
+        var urlP = app.urlPost;
         var usu = $("#id_usu").val();
         $.ajax({
             type: 'POST',
             dataType: 'json', 
-            data: {usu:usu, idpos:datos.id, x:pos.latitude, y:pos.longitude, accuracy:pos.accuracy, proveedor:pos.provider, fechaFin:datos.fechaHoraFin},
+            data: {usu:usu, idpos:datos.id, x:pos.latitude, y:pos.longitude, accuracy:pos.accuracy, proveedor:pos.provider, fechaFin:datos.fechaHoraFin, nbat:app.battery.level},
             url: urlP+"enviarActUbicacionPosZero",
-            success : function(data){ 
-                //return data;
-                alert("exito update")
-            },
+            success : function(data){ },
             error: function(data){
-                alert("error update")
-                //nuevaPosicion();
+                //alert("error update cero")
             }
         });
     }
