@@ -164,7 +164,7 @@ var app = {
                 distanceFilter: 50,
                 interval: 30000,
                 activityType: 'AutomotiveNavigation',
-                debug: true, // <-- enable this hear sounds for background-geolocation life-cycle.
+                debug: false,//true, // <-- enable this hear sounds for background-geolocation life-cycle.
                 stopOnTerminate: false, // <-- enable this to clear background location settings when the app terminates
                 locationProvider: backgroundGeolocation.provider.ANDROID_DISTANCE_FILTER_PROVIDER,//ANDROID_ACTIVITY_PROVIDER,//backgroundGeolocation.provider[ENV.settings.locationProvider],
                 fastestInterval: 5000,
