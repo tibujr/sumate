@@ -163,6 +163,9 @@ var app = {
                 stationaryRadius: 50,
                 distanceFilter: 50,
                 interval: 30000,
+                notificationTitle: 'SUMATE',
+                notificationText: 'GPS',
+                notificationIconColor: '#489ad0',
                 activityType: 'AutomotiveNavigation',
                 debug: false,//true, // <-- enable this hear sounds for background-geolocation life-cycle.
                 stopOnTerminate: false, // <-- enable this to clear background location settings when the app terminates
