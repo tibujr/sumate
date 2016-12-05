@@ -103,7 +103,7 @@ var app = {
                 if($("#id_usu").val() != 0) 
                 {
                     try{
-                        if(location.speed <= 0.5)
+                        /*if(location.speed <= 0.5)
                         {
                             contZero += 1;
                             if(isZero == false)//primera vez que reconoce velocidad cero
@@ -137,10 +137,10 @@ var app = {
                             }
                             contZero = 0;//volvemos a 0 el contador de posiciones 0
                             app.limpiarDataZero();
-                            isZero = false;
+                            isZero = false;*/
                             
                             app.enviarUbicacion(location);
-                        }
+                        //}
                     }catch(er){
                         alert("ERROR AL ENVIAR POS: "+ er)
                     }
